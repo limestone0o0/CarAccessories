@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <title>{% block title %}
+        汽车配件商城
+    {% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/shop/assets/images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootstrapmb.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/chosen.css">
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700" rel="stylesheet">
+    {% block css %}
+{% endblock %}
+</head>
+<body class="index-opt-3">
+<div class="wrapper">
+    <form id="block-search-mobile" method="get" class="block-search-mobile">
+        <div class="form-content">
+            <div class="control">
+                <a href="#" class="close-block-serach"><span class="icon fa fa-times"></span></a>
+                <input type="text" name="search" placeholder="搜索" class="input-subscribe">
+                <button type="submit" class="btn search">
+                    <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <!-- HEADER -->
+    <header class="site-header header-opt-1">
+        <!-- header-top -->
+        <div class="header-top">
+            <div class="container">
+                <!-- hotline -->
+                <ul class="nav-top-left">
+                    <li><a href="#">欢迎来到汽配城</a></li>
+                </ul><!-- hotline -->
+                <!-- heder links -->
+                <ul class="nav-top-right rhyssa-nav">
+                    <li class="menu-item-has-children">
+                            <img src="/static/shop/assets/images/general/China-Flag.png" alt="flag">中国
+                    </li>
+                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>注册 / 登录</a></li>
+                </ul><!-- heder links -->
+            </div>
+        </div> <!-- header-top -->
+        <!-- header-content -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 nav-left">
+                        <!-- logo -->
+                        <strong class="logo">
+                            <a href="#"><img src="/static/shop/assets/images/logo.png" alt="logo"></a>
+                        </strong><!-- logo -->
+                    </div>
+                    <div class="col-md-8 nav-mind">
+                        <!-- block search -->
+                        <div class="block-search">
+                            <div class="block-content">
+                                <div class="categori-search  ">
+                                    <select data-placeholder="All Categories"
+                                            class="chosen-select categori-search-option">
+                                        <option value="">所有类别</option>
+                                        <optgroup label="- Electronics">
+                                            <option>Batteries & Chargens</option>
+                                            <option>Repair Parts</option>
+                                            <option>Mp3 Player & Acessories</option>
+                                        </optgroup>
+                                        <optgroup label="- Smartphone & Table">
+                                            <option>Batteries & Chargens</option>
+                                            <option>Repair Parts</option>
+                                            <option>Mp3 Player & Acessories</option>
+                                        </optgroup>
+                                        <optgroup label="- Electronics">
+                                            <option>Batteries & Chargens</option>
+                                            <option>Repair Parts</option>
+                                            <option>Mp3 Player & Acessories</option>
+                                        </optgroup>
+                                        <optgroup label="- Smartphone & Table">
+                                            <option>Batteries & Chargens</option>
+                                            <option>Repair Parts</option>
+                                            <option>Mp3 Player & Acessories</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="form-search">
+                                    <form>
+                                        <div class="box-group">
+                                            <input type="text" class="form-control"
+                                                   placeholder="请输入查询关键字...">
+                                            <button class="btn btn-search" type="button"><span
+                                                    class="fa fa-search"></span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- block search -->
+                    </div>
+                    <div class="col-md-2 nav-right">
+                        <!-- block mini cart -->
+                        <div class="block-minicart dropdown">
+                            <a class="minicart" href="#">
+
+                                    <span class="counter qty">
+
+                                        <span class="cart-icon"><i class="fa fa-shopping-bag"
+                                                                   aria-hidden="true"></i></span>
+
+                                        <span class="counter-number">2</span>
+
+                                    </span>
+                                <span class="counter-your-cart">
+
+                                        <span class="counter-label">购物车</span>
+
+                                        <span class="counter-price">00.00元</span>
+
+                                    </span>
+                            </a>
+                            <div class="parent-megamenu">
+                                <form>
+                                    <div class="minicart-content-wrapper">
+                                        <div class="subtitle">
+                                            你有 <span>2</span> 个商品 在你的购物车中
+                                        </div>
+                                        <div class="minicart-items-wrapper">
+                                            <ol class="minicart-items">
+                                                <!---两个商品-->
+                                                <li class="product-inner">
+                                                    <div class="product-thumb style1">
+                                                        <div class="thumb-inner">
+                                                            <a href="#"><img src="/static/shop/assets/images/home1/c1.jpg"
+                                                                             alt="c1"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-innfo">
+                                                        <div class="product-name"><a href="#">Xbox One S Halo Collection
+                                                        </a></div>
+                                                        <a href="#" class="remove"><i class="fa fa-times"
+                                                                                      aria-hidden="true"></i></a>
+                                                        <span class="price price-dark">
+
+                                                                <ins>$229.00</ins>
+
+                                                            </span>
+                                                    </div>
+                                                </li>
+                                                <li class="product-inner">
+                                                    <div class="product-thumb style1">
+                                                        <div class="thumb-inner">
+                                                            <a href="#"><img src="/static/shop/assets/images/home1/c2.jpg"
+                                                                             alt="c2"></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-innfo">
+                                                        <div class="product-name"><a href="#">Acer's Aspire S7 is a thin
+                                                            and portable...</a></div>
+                                                        <a href="#" class="remove"><i class="fa fa-times"
+                                                                                      aria-hidden="true"></i></a>
+                                                        <span class="price">
+
+                                                                <ins>$229.00</ins>
+
+                                                                <del>$259.00</del>
+
+                                                            </span>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                        <div class="subtotal">
+                                            <span class="label">总计 :</span>
+                                            <span class="price">480.00元</span>
+                                        </div>
+                                        <div class="actions">
+                                            <a class="btn btn-viewcart" href="#">查看购物车</a>
+                                            <a class="btn btn-checkout" href="#">结算</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- block mini cart -->
+                        <a href="#" class="hidden-md search-hidden"><span class="fa fa-search"></span></a>
+                        <a class="wishlist-minicart" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- header-content -->
+        <!-- header-menu-bar -->
+        <div class="header-menu-bar header-sticky">
+            <div class="header-menu-nav menu-style-2">
+                <div class="container">
+                    <div class="header-menu-nav-inner">
+                        <div id="box-vertical-megamenus" class="box-vertical-megamenus nav-toggle-cat">
+                            <h4 class="title active">
+
+                                    <span class="btn-open-mobile home-page">
+
+                                        <span></span>
+
+                                        <span></span>
+
+                                        <span></span>
+
+                                    </span>
+                                <span class="title-menu">所有类别</span>
+                            </h4>
+                            <div class="vertical-menu-content">
+                                <span class="btn-close hidden-md"><i class="fa fa-times" aria-hidden="true"></i></span>
+                                <ul class="vertical-menu-list">
+                                    <li><a href="#">New Arrivals</a></li>
+                                    <li class="menu-item-has-children arrow item-megamenu">
+                                        <a href="#" class="dropdown-toggle">Amplifiers</a>
+                                        <span class="toggle-submenu hidden-md"></span>
+                                        <div class="submenu parent-megamenu megamenu">
+                                            <div class="row">
+                                                <div class="submenu-banner submenu-banner-menu-1">
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown-menu-info">
+                                                            <h6 class="dropdown-menu-title">Fashion WoMen’s</h6>
+                                                            <div class="dropdown-menu-content">
+                                                                <ul class="menu">
+                                                                    <li class="menu-item"><a href="#">Wheels
+                                                                    </a></li>
+                                                                    <li class="menu-item"><a href="#">Tablets</a></li>
+                                                                    <li class="menu-item"><a href="#">Audio &
+                                                                        Theater</a></li>
+                                                                    <li class="menu-item"><a href="#">Bestseller</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Top Rated</a></li>
+                                                                    <li class="menu-item"><a href="#">Tires</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Factory</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown-menu-info">
+                                                            <h6 class="dropdown-menu-title">Audio</h6>
+                                                            <div class="dropdown-menu-content">
+                                                                <ul class="menu">
+                                                                    <li class="menu-item"><a href="#">Smart
+                                                                        Audio</a></li>
+                                                                    <li class="menu-item"><a href="#">Mirror
+                                                                    </a></li>
+                                                                    <li class="menu-item"><a href="#">Hats</a></li>
+                                                                    <li class="menu-item"><a href="#">Tech
+                                                                        Audio</a></li>
+                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="menu-item-has-children arrow item-megamenu">
+                                        <a href="#" class="dropdown-toggle">Exterior</a>
+                                        <span class="toggle-submenu hidden-md"></span>
+                                        <div class="submenu parent-megamenu megamenu">
+                                            <div class="row">
+                                                <div class="submenu-banner submenu-banner-menu-1">
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown-menu-info">
+                                                            <h6 class="dropdown-menu-title">Fashion WoMen’s</h6>
+                                                            <div class="dropdown-menu-content">
+                                                                <ul class="menu">
+                                                                    <li class="menu-item"><a href="#">Wheels
+                                                                    </a></li>
+                                                                    <li class="menu-item"><a href="#">Tablets</a></li>
+                                                                    <li class="menu-item"><a href="#">Audio &
+                                                                        Theater</a></li>
+                                                                    <li class="menu-item"><a href="#">Bestseller</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Top Rated</a></li>
+                                                                    <li class="menu-item"><a href="#">Tires</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Factory</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown-menu-info">
+                                                            <h6 class="dropdown-menu-title">Audio</h6>
+                                                            <div class="dropdown-menu-content">
+                                                                <ul class="menu">
+                                                                    <li class="menu-item"><a href="#">Smart
+                                                                        Audio</a></li>
+                                                                    <li class="menu-item"><a href="#">Mirror
+                                                                    </a></li>
+                                                                    <li class="menu-item"><a href="#">Hats</a></li>
+                                                                    <li class="menu-item"><a href="#">Tech
+                                                                        Audio</a></li>
+                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#">Audio</a>
+                                    </li>
+                                    <li><a href="#">Interior</a></li>
+                                    <li class="menu-item-has-children arrow item-megamenu">
+                                        <a href="#" class="dropdown-toggle">Lighting</a>
+                                        <span class="toggle-submenu hidden-md"></span>
+                                        <div class="submenu parent-megamenu megamenu">
+                                            <div class="row">
+                                                <div class="submenu-banner submenu-banner-menu-1">
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown-menu-info">
+                                                            <h6 class="dropdown-menu-title">Performances</h6>
+                                                            <div class="dropdown-menu-content">
+                                                                <ul class="menu">
+                                                                    <li class="menu-item"><a href="#">Audi
+                                                                    </a></li>
+                                                                    <li class="menu-item"><a href="#">Sealed Beam </a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">System
+                                                                        Audio</a></li>
+                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
+                                                                    <li class="menu-item"><a href="#">Projector</a></li>
+                                                                    <li class="menu-item"><a href="#">Tires</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Factory</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="dropdown-menu-info">
+                                                            <h6 class="dropdown-menu-title">Audio</h6>
+                                                            <div class="dropdown-menu-content">
+                                                                <ul class="menu">
+                                                                    <li class="menu-item"><a href="#">Audio</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Phone
+                                                                    </a></li>
+                                                                    <li class="menu-item"><a href="#">Lighting</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Repair Parts</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
+                                                                    </li>
+                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li><a href="#">Performance</a></li>
+                                    <li><a href="#">Repair Parts</a></li>
+                                    <li><a href="#">System</a></li>
+                                    <li><a href="#">Wheels</a></li>
+                                    <li><a href="#">Wheels</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="header-menu header-menu-resize">
+                            <ul class="header-nav rhyssa-nav">
+                                <li class="btn-close hidden-md"><i class="fa fa-times" aria-hidden="true"></i></li>
+                                <li class=" arrow">
+                                    <a href="/" >首页</a>
+                                    <span class="toggle-submenu hidden-md"></span>
+
+                                </li>
+                                <li class=" arrow">
+                                    <a href="#" >商品列表</a>
+                                    <span class="toggle-submenu hidden-md"></span>
+
+                                </li>
+                                <li class="arrow">
+                                    <a href="#" class="dropdown-toggle">新闻</a>
+                                    <span class="toggle-submenu hidden-md"></span>
+
+                                </li>
+{#                                <li class="menu-item-has-children arrow">#}
+{#                                    <a href="#" class="dropdown-toggle">Sub Menu</a>#}
+{#                                    <span class="toggle-submenu hidden-md"></span>#}
+{#                                    <ul class="submenu parent-megamenu">#}
+{#                                        <li class="menu-item">#}
+{#                                            <a href="checkout.html">Checkout</a>#}
+{#                                        </li>#}
+{#                                        <li class="menu-item">#}
+{#                                            <a href="shopping-cart.html">Shopping Cart</a>#}
+{#                                        </li>#}
+{#                                        <li class="menu-item">#}
+{#                                            <a href="contact-us.html">Contact Us</a>#}
+{#                                        </li>#}
+{#                                        <li class="menu-item">#}
+{#                                            <a href="login.html">Login</a>#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{#                                </li>#}
+                                <li>
+                                    <a href="contact-us.html" class="dropdown-toggle">联系我们</a>
+                                    <span class="toggle-submenu hidden-md"></span>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <span data-action="toggle-nav" class="menu-on-mobile hidden-md">
+
+                                <span class="btn-open-mobile home-page">
+
+                                    <span></span>
+
+                                    <span></span>
+
+                                    <span></span>
+
+                                </span>
+
+                                <span class="title-menu-mobile">Main menu</span>
+
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header><!-- end HEADER -->
+{% block content %}
+    {% endblock %}
+    <!-- FOOTER -->
+    <footer class="site-footer footer-opt-2">
+
+        <div class="footer-column equal-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-sm-4 equal-elem">
+                        <h3 class="title-of-section">关于我们</h3>
+                        <div class="contacts">
+                            <p class="contacts-info">我们致力于开发美观实用的汽车配件零售网站，欢迎关注我们的Github，
+                            同时希望大家给出意见或建议，请联系我们的邮箱。</p>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 equal-elem">
+                    </div>
+                    <div class="col-md-5 col-sm-4 equal-elem">
+                        <div class="links">
+                            <h3 class="title-of-section">联系我们</h3>
+                            <ul>
+                                <li> <span class="contacts-info info-address "><a href="https://github.com/limestone0o0/CarAccessories"> &nbsphttps://github.com/limestone0o0/CarAccessories</a></span></li>
+                                <li><span class="contacts-info info-support">
+                                    xxm13504577723@163.com</span></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="copyright full-width">
+            <div class="container ">
+                <div class="copyright ">
+                    © Copyright 2019<span> Rhyssa</span>. All Rights <a href="http://www.bootstrapmb.com/">Reserved.</a>.
+                </div>
+
+            </div>
+        </div>
+    </footer><!-- end FOOTER -->
+</div>
+<a href="#" id="scrollup" title="回到顶部">回到顶部</a>
+<!-- jQuery -->
+<script type="text/javascript" src="/static/shop/assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootstrapmb.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/wow.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery.actual.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery.sticky.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery.elevateZoom.min.js"></script>
+<script src="/static/shop/assets/js/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="/static/shop/assets/js/fancybox/source/helpers/jquery.fancybox-media.js"></script>
+<script src="/static/shop/assets/js/fancybox/source/helpers/jquery.fancybox-thumbs.js"></script>
+{#<script src='http://ditu.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>#}
+<script type="text/javascript" src="/static/shop/assets/js/function.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/Modernizr.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery.plugin.js"></script>
+<script type="text/javascript" src="/static/shop/assets/js/jquery.countdown.js"></script>
+{% block js %}
+{% endblock %}
+</body>
+</html>
