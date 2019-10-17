@@ -1,0 +1,53 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title %}
+    登录
+{% endblock %}
+{% block content %}
+    <!-- MAIN -->
+    <main class="site-main site-login">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <li><a href="#">个人中心</a></li>
+                <li class="active"><a href="#">登录</a></li>
+            </ol>
+        </div>
+        <div class="customer-login">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form class="login" method="post">
+                            <p class="form-row form-row-wide">
+                                <label>邮箱或者手机号<span class="required"></span></label>
+                                <input type="text" value="" name="username"
+                                       placeholder="请输入邮箱或者手机号" class="input-text">
+                            </p>
+                            <p class="form-row form-row-wide">
+                                <label>密码<span class="required"></span></label>
+                                <input type="text" value="" name="password"
+                                       placeholder="请输入密码" class="input-text">
+                            </p>
+                            <p class="form-row col-lg-6">
+                                <label>验证码<span class="required"></span></label>
+                                <input type="text" value="" name="authcode"
+                                       placeholder="请输入验证码" class="input-text">
+                            </p>
+                                 <p class="form-row col-lg-6">
+                                <label>验证码<span class="required"></span></label>
+                                <input type="text" value="" name="authcode"
+                                       placeholder="请输入验证码" class="input-text">
+                            </p>
+                            <ul class="inline-block">
+                                <li><label class="inline"><input type="checkbox"><span class="input"></span>记住密码</label>
+                                </li>
+                            </ul>
+                            <a href="#" class="forgot-password">忘记密码?</a>
+                            <p class="form-row">
+                                <input type="submit" value="登录" name="register" class="button-submit">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main><!-- end MAIN -->
+{% endblock %}
