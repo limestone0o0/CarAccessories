@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2f2fe6a-a47f-4913-afdd-5e001be20c27" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CarAccessories.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CarAccessories.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarAccessories/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarAccessories/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarNews/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarNews/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarNews/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarNews/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarNews/templates/news/blog_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/templates/news/blog_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarNews/templates/news/blog_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/templates/news/blog_single.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CarNews/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/templates/shop/index_shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +22,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34164">
+            <state relative-caret-position="26">
               <caret line="1314" column="54" selection-start-line="1314" selection-start-column="54" selection-end-line="1314" selection-end-column="54" />
             </state>
           </provider>
@@ -38,11 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarNews/templates/news/blog_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="130">
+              <caret line="107" column="37" lean-forward="true" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -50,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CarNews/templates/news/blog_single.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-494">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            <state relative-caret-position="152">
+              <caret line="132" column="29" lean-forward="true" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -59,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://E:/untitled/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="-260">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -68,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarNews/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="69" />
+            <state relative-caret-position="126">
+              <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -78,12 +68,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CarNews/serializers.py">
+        <entry file="file://$PROJECT_DIR$/CarNews/templates/news/404.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="52">
+              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
               <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarNews/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+            <state relative-caret-position="130">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -102,10 +93,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CarNews/models.py">
+        <entry file="file://$PROJECT_DIR$/CarNews/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="48">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,6 +118,7 @@
     <findStrings>
       <find>Featured Products</find>
       <find>post-item</find>
+      <find>block-latest-roducts</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -141,13 +136,17 @@
         <option value="$PROJECT_DIR$/CarPartsShop/models.py" />
         <option value="E:/untitled/多线程spider/t1.py" />
         <option value="$PROJECT_DIR$/CarPartsShop/serializers.py" />
-        <option value="$PROJECT_DIR$/CarAccessories/settings.py" />
         <option value="$PROJECT_DIR$/CarNews/models.py" />
-        <option value="$PROJECT_DIR$/CarNews/serializers.py" />
         <option value="$PROJECT_DIR$/CarNews/urls.py" />
-        <option value="$PROJECT_DIR$/CarNews/views.py" />
         <option value="E:/untitled/test.html" />
+        <option value="$PROJECT_DIR$/CarNews/serializers.py" />
+        <option value="$USER_HOME$/Desktop/index.html" />
+        <option value="$PROJECT_DIR$/CarAccessories/settings.py" />
+        <option value="$PROJECT_DIR$/static/news/assets/css/style1.css" />
+        <option value="$PROJECT_DIR$/CarNews/templates/news/404.html" />
         <option value="$PROJECT_DIR$/CarNews/templates/news/blog_list.html" />
+        <option value="$PROJECT_DIR$/CarNews/views.py" />
+        <option value="$PROJECT_DIR$/CarNews/templates/news/blog_single.html" />
       </list>
     </option>
   </component>
@@ -174,7 +173,33 @@
             <path>
               <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
               <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
               <item name="CarNews" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarNews" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarNews" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="news" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarNews" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="news" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
@@ -196,6 +221,12 @@
             </path>
             <path>
               <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarPartsShop" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
               <item name="untitled" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -214,7 +245,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/untitled" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CarNews/static/news/assets/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -226,11 +257,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews\static\news\assets\css" />
+      <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews\static\news\assets\fonts" />
+      <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews\static\news\assets\images" />
+      <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews\static\news\assets\js" />
+      <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews\templates\news" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\carsparts\CarAccessories\CarAccessories\CarNews\templates\news" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -314,22 +349,24 @@
       <workItem from="1571453007635" duration="2633000" />
       <workItem from="1571462095772" duration="1120000" />
       <workItem from="1571467684887" duration="27127000" />
-      <workItem from="1571541286771" duration="5310000" />
+      <workItem from="1571541286771" duration="10655000" />
+      <workItem from="1571571941933" duration="5300000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39892000" />
+    <option name="totallyTimeSpent" value="50537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18154311" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18381241" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.049099836" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.32405892" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -337,7 +374,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5015129" side_tool="true" weight="0.32405892" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3584288" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -369,26 +406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="962">
           <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/testspider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2600">
-          <caret line="104" column="15" selection-start-line="104" selection-start-column="15" selection-end-line="104" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -436,16 +453,6 @@
     <entry file="file://$PROJECT_DIR$/CarAccessories/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/CarAccessories/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="e#638#670#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/untitled/多线程spider/ttest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
@@ -467,13 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="74" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarAccessories/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="47" column="35" lean-forward="true" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -507,17 +507,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_index.html">
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/testspider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34164">
-          <caret line="1314" column="54" selection-start-line="1314" selection-start-column="54" selection-end-line="1314" selection-end-column="54" />
+        <state relative-caret-position="580">
+          <caret line="104" column="15" selection-start-line="104" selection-start-column="15" selection-end-line="104" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/untitled/test.html">
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="130">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarAccessories/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -528,30 +547,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CarNews/urls.py">
+    <entry file="file://C:/ProgramData/Anaconda3/envs/DjangoPath/Lib/site-packages/django/db/models/query.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+        <state relative-caret-position="128">
+          <caret line="398" selection-start-line="398" selection-end-line="398" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://E:/flask_blog/fight_blog/flight_blog/app/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="108" selection-start-line="108" selection-end-line="112" />
           <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#0#70#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/static/news/assets/js/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/static/news/assets/css/style1.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarAccessories/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="147" column="36" lean-forward="true" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="69" column="8" selection-end-line="72" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CarNews/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        <state relative-caret-position="48">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/news/assets/css/style1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="167" column="23" lean-forward="true" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/news/assets/css/font-awesome1.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/untitled/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-260">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1314" column="54" selection-start-line="1314" selection-start-column="54" selection-end-line="1314" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/templates/news/404.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CarNews/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="69" />
+        <state relative-caret-position="126">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -560,18 +654,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CarNews/templates/news/blog_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#main#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="130">
+          <caret line="107" column="37" lean-forward="true" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CarNews/templates/news/blog_single.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-494">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        <state relative-caret-position="152">
+          <caret line="132" column="29" lean-forward="true" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
         </state>
       </provider>
     </entry>

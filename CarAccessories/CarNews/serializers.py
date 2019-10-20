@@ -8,6 +8,6 @@ class NewsSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             'news_title', 'news_time_str', 'news_art_time', 'news_list_img',
             'news_path', 'news_read_num', 'news_comment_num', 'news_abstract',
-            'news_art_img', 'news_art_content'
+            'news_art_img', 'news_art_content','id'
             ]
 

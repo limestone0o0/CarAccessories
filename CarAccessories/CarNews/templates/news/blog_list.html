@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="post-content">
                                         <p v-text="site.news_abstract"></p>
-                                        <a href="#" class="read-more">继续阅读</a>
+                                        <a href="javascript:void(0);" v-bind:id="site.id" class="read-more" onclick="godeail(this)">继续阅读</a>
                                     </div>
                                 </div>
                             </div>
@@ -109,26 +109,20 @@
                     'page': 1,
                 },
                 dataType:"json",
-                timeout:'1000',
+                timeout:'2000',
             }
         ).then(function (res) {
-            console.log(res)
+            {#console.log(res)#}
             self.sites = res['newsdata'];
         }).fail(function () {
                 console.log('失败');
             })
     }
     });
-    function getdata() {
-
+    function godeail(thiss) {
+        window.location.href='/news/news_single?id='+thiss.id.toString()
     }
-        {#function getsuccess(res) {#}
-        {#    console.log(res)#}
-        {#    console.log(this.sites)#}
-        {#            }#}
-        {#function errorfunc(err) {#}
-        {#    console.log(err)#}
-        {#            }#}
+
     </script>
 
 {% endblock %}

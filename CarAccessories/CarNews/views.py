@@ -20,14 +20,22 @@ class NewsViewSet(APIView):
     '''
 
     def get(self, request):
-        queryset = CarnewsCarnews.objects.all()
-        page = NewsPageNumberPagination()
-        page_list = page.paginate_queryset(queryset, request, self)
-        serializer = NewsSerializer(page_list, many=True)
+        id = request.GET.get('id')
         res = {
             'status': '200',
-            'newsdata': serializer.data
+            'newsdata': ''
         }
+        if id:
+            rres_id = CarnewsCarnews.objects.get(id=int(id))
+            res_serializer = NewsSerializer(rres_id, many=False)
+            res['newsdata'] = res_serializer.data
+        else:
+            queryset = CarnewsCarnews.objects.all()
+            page = NewsPageNumberPagination()
+            page_list = page.paginate_queryset(queryset, request, self)
+            serializer = NewsSerializer(page_list, many=True)
+            res['newsdata'] = serializer.data
+
         return Response(res)
 
 
@@ -39,3 +47,5 @@ def news_list(request):
 def news_single(request):
 
     return render(request, 'news/blog_single.html')
+
+
