@@ -11,7 +11,7 @@ def setPassword(password):
     return result
 
 def index_shop(request):
-    return render(request, 'shop/index_shop.html')
+    return render(request, 'shop/shop_index.html')
 
 def shop_register(request):
     error_message = ''

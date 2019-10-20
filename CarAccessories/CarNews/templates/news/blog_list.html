@@ -1,0 +1,137 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title %}
+汽配之家快讯
+{% endblock %}
+{% block css%}
+<script type="text/javascript" src="http://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+{% endblock %}
+{% block content %}
+<!-- MAIN -->
+    <main class="site-main blog-single">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <li><a href="#">首页</a></li>
+                <li class="active"><a href="#">汽配之家快讯</a></li>
+            </ol>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 float-none float-right">
+                    <div class="main-content">
+                        <div class="post-list post-items" id="postsnewsapi">
+                            <div class="post-item" v-for="site in sites">
+                                <div class="post-thumb ">
+                                    <a href="#" class="postsaflag"><img v-bind:src="'https://'+site.news_list_img" class="postsimgflag" style="height: 200px; width: 400px" alt="post-image-3"></a>
+                                    <span class="date" > <span>来自</span><span v-text="site.news_time_str"></span></span>
+                                </div>
+                                <div class="post-item-info">
+                                    <h3 class="post-name"><a href="#" v-text="site.news_title"></a>
+                                    </h3>
+                                    <div class="post-metas">
+                                        <span>时间: </span><span class="author"><span v-text="site.news_art_time"></span></span>
+                                        <span >阅读</span><span class="comment" v-text="site.news_read_num"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="post-content">
+                                        <p v-text="site.news_abstract"></p>
+                                        <a href="#" class="read-more">继续阅读</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="pagination">
+                            <ul class="nav-links">
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li class="back-next"><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="sidebar-left">
+                        <div class="block-search-blog">
+                            <form class="searchform">
+                                <div class="control">
+                                    <input type="text" placeholder="请输入搜索内容." name="text"
+                                           class="input-subscribe">
+                                    <button type="submit" class="btn-searchform"><i class="fa fa-search"
+                                                                                    aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="block-recent-post-blog">
+                            <div class="block-title">最近快讯</div>
+                            <ul>
+                                <li class="recent-post-item"><a href="#">Gallery Post with Supported Animation</a></li>
+                                <li class="recent-post-item"><a href="#">Announcement – Standard Post without Image</a>
+                                </li>
+                                <li class="recent-post-item"><a href="#">We’re the best Designers from UK</a></li>
+                                <li class="recent-post-item"><a href="#">A Beautiful Day – Standard Post with Image</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block-categories-blog">
+                            <div class="block-title">文章类型</div>
+                            <ul>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main><!-- end MAIN -->
+{% endblock %}
+{% block js %}
+    <script>
+
+    new Vue({
+    el: '#postsnewsapi',
+    data: {
+        sites: []
+    }, 
+    created:function () {
+        var self = this;
+        $.ajax(
+            {
+                url:'http://127.0.0.1:8000/news/newsapi/',
+                type:'GET',
+                data:{
+                    'format': 'json',
+                    'page': 1,
+                },
+                dataType:"json",
+                timeout:'1000',
+            }
+        ).then(function (res) {
+            console.log(res)
+            self.sites = res['newsdata'];
+        }).fail(function () {
+                console.log('失败');
+            })
+    }
+    });
+    function getdata() {
+
+    }
+        {#function getsuccess(res) {#}
+        {#    console.log(res)#}
+        {#    console.log(this.sites)#}
+        {#            }#}
+        {#function errorfunc(err) {#}
+        {#    console.log(err)#}
+        {#            }#}
+    </script>
+
+{% endblock %}
+
+
+
