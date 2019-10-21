@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import *
 from .serializers import NewsSerializer
 from rest_framework.response import Response
