@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2f2fe6a-a47f-4913-afdd-5e001be20c27" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CarPartsShop/sqlalchemy_spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/kumo.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/static/shop/assets/fonts/kumo.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarAccessories/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarAccessories/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarNews/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarNews/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarNews/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarNews/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CarPartsShop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/testspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/testspider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPartsShop/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarPartsShop/sqlalchemy_spider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,53 +20,13 @@
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://E:/PythonFrameWork/Qshop/Seller/views.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="393">
-                    <caret line="68" column="55" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="55" />
-                    <folding>
-                      <element signature="e#0#35#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://E:/PythonFrameWork/Qshop/Seller/urls.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="296">
-                    <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://E:/PythonFrameWork/Qshop/Seller/models.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1480">
-                    <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarPartsShop/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2072">
-              <caret line="56" column="40" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
+            <state relative-caret-position="333">
+              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -75,9 +35,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CarNews/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarPartsShop/testspider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3774">
+            <state relative-caret-position="616">
               <caret line="102" selection-start-line="102" selection-end-line="102" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -89,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CarPartsShop/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="296">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -98,20 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="27" column="106" selection-start-line="27" selection-start-column="106" selection-end-line="27" selection-end-column="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CarPartsShop/sqlalchemy_spider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3552">
-              <caret line="96" column="34" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="999">
+              <caret line="27" column="92" selection-start-line="27" selection-start-column="92" selection-end-line="27" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -156,20 +113,24 @@
         <option value="E:/PythonFrameWork/Qshop/Seller/views.py" />
         <option value="$USER_HOME$/Desktop/爬虫/第6天/day06/03.百度贴吧.py" />
         <option value="$PROJECT_DIR$/CarPartsShop/sqlalchemy_spider.py" />
-        <option value="$PROJECT_DIR$/CarPartsShop/models.py" />
         <option value="$PROJECT_DIR$/CarPartsShop/testspider.py" />
-        <option value="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html" />
         <option value="$PROJECT_DIR$/CarPartsShop/urls.py" />
         <option value="$USER_HOME$/Desktop/课程笔记和练习/第四周/Day18代码/test06-协程的使用.py" />
         <option value="E:/PythonFrameWork/Qshop/Seller/templates/seller/login.html" />
         <option value="$PROJECT_DIR$/CarPartsShop/views.py" />
         <option value="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_login.html" />
+        <option value="$PROJECT_DIR$/CarAccessories/settings.py" />
+        <option value="$PROJECT_DIR$/CarNews/models.py" />
+        <option value="$PROJECT_DIR$/CarNews/urls.py" />
+        <option value="$PROJECT_DIR$/CarNews/views.py" />
+        <option value="$PROJECT_DIR$/CarPartsShop/models.py" />
+        <option value="$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="84" />
+    <option name="y" value="220" />
     <option name="width" value="1470" />
     <option name="height" value="833" />
   </component>
@@ -178,12 +139,53 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarNews" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarPartsShop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarPartsShop" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarAccessories" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarAccessories" type="462c0819:PsiDirectoryNode" />
+              <item name="CarPartsShop" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="shop" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/conflict/CarAccessories/CarAccessories" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -353,17 +355,17 @@
       <workItem from="1571704807725" duration="12318000" />
       <workItem from="1571743824441" duration="1015000" />
       <workItem from="1571745849434" duration="1905000" />
+      <workItem from="1571752214167" duration="3542000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55959000" />
+    <option name="totallyTimeSpent" value="59501000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="82" y="92" width="1470" height="833" extended-state="0" />
-    <editor active="true" />
+    <frame x="84" y="220" width="1470" height="833" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.283419" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2829787" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -420,11 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CarAccessories/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2997" />
-      </provider>
-    </entry>
     <entry file="file://E:/汽车项目爬虫/sqlalchemys.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
@@ -461,13 +458,6 @@
         <state relative-caret-position="-1508" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="510" column="11" selection-start-line="510" selection-start-column="11" selection-end-line="510" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/课程笔记和练习/第四周/Day18代码/test06-协程的使用.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-370">
@@ -482,43 +472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3700">
           <caret line="100" column="21" lean-forward="true" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2072">
-          <caret line="56" column="40" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/testspider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3774">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CarPartsShop/sqlalchemy_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3552">
-          <caret line="96" column="34" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -556,10 +509,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/testspider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarAccessories/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarNews/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/sqlalchemy_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="96" column="34" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="262" column="75" lean-forward="true" selection-start-line="262" selection-start-column="75" selection-end-line="262" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CarPartsShop/templates/shop/shop_login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="27" column="106" selection-start-line="27" selection-start-column="106" selection-end-line="27" selection-end-column="106" />
+        <state relative-caret-position="999">
+          <caret line="27" column="92" selection-start-line="27" selection-start-column="92" selection-end-line="27" selection-end-column="92" />
         </state>
       </provider>
     </entry>

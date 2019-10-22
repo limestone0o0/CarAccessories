@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 
     <title>{% block title %}
-        汽车配件商城
+        汽配之家
     {% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="/static/shop/assets/images/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="/static/shop/assets/css/animate.css">
@@ -42,14 +42,14 @@
             <div class="container">
                 <!-- hotline -->
                 <ul class="nav-top-left">
-                    <li><a href="#">欢迎来到汽配城</a></li>
+                    <li><a href="#">欢迎来到汽配之家</a></li>
                 </ul><!-- hotline -->
                 <!-- heder links -->
                 <ul class="nav-top-right rhyssa-nav">
                     <li class="menu-item-has-children">
                             <img src="/static/shop/assets/images/general/China-Flag.png" alt="flag">中国
                     </li>
-                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>注册 / 登录</a></li>
+                    <li><a href="/shop/shop_login"><i class="fa fa-user" aria-hidden="true"></i>注册 / 登录</a></li>
                 </ul><!-- heder links -->
             </div>
         </div> <!-- header-top -->
@@ -60,7 +60,7 @@
                     <div class="col-md-2 nav-left">
                         <!-- logo -->
                         <strong class="logo">
-                            <a href="#"><img src="/static/shop/assets/images/logo.png" alt="logo"></a>
+                            <a href="/"><img src="/static/shop/assets/images/logo.png" alt="logo"></a>
                         </strong><!-- logo -->
                     </div>
                     <div class="col-md-8 nav-mind">
@@ -71,25 +71,7 @@
                                     <select data-placeholder="All Categories"
                                             class="chosen-select categori-search-option">
                                         <option value="">所有类别</option>
-                                        <optgroup label="- Electronics">
-                                            <option>Batteries & Chargens</option>
-                                            <option>Repair Parts</option>
-                                            <option>Mp3 Player & Acessories</option>
                                         </optgroup>
-                                        <optgroup label="- Smartphone & Table">
-                                            <option>Batteries & Chargens</option>
-                                            <option>Repair Parts</option>
-                                            <option>Mp3 Player & Acessories</option>
-                                        </optgroup>
-                                        <optgroup label="- Electronics">
-                                            <option>Batteries & Chargens</option>
-                                            <option>Repair Parts</option>
-                                            <option>Mp3 Player & Acessories</option>
-                                        </optgroup>
-                                        <optgroup label="- Smartphone & Table">
-                                            <option>Batteries & Chargens</option>
-                                            <option>Repair Parts</option>
-                                            <option>Mp3 Player & Acessories</option>
                                         </optgroup>
                                     </select>
                                 </div>
@@ -218,49 +200,21 @@
                             <div class="vertical-menu-content">
                                 <span class="btn-close hidden-md"><i class="fa fa-times" aria-hidden="true"></i></span>
                                 <ul class="vertical-menu-list">
-                                    <li><a href="#">New Arrivals</a></li>
                                     <li class="menu-item-has-children arrow item-megamenu">
-                                        <a href="#" class="dropdown-toggle">Amplifiers</a>
+                                        <a href="#" class="dropdown-toggle">汽车配件</a>
                                         <span class="toggle-submenu hidden-md"></span>
                                         <div class="submenu parent-megamenu megamenu">
                                             <div class="row">
                                                 <div class="submenu-banner submenu-banner-menu-1">
                                                     <div class="col-md-4">
                                                         <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Fashion WoMen’s</h6>
+                                                            <h5 class="dropdown-menu-title">各种配件</h5>
                                                             <div class="dropdown-menu-content">
                                                                 <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Wheels
+                                                                    <li class="menu-item"><a href="#" > 坐垫
                                                                     </a></li>
-                                                                    <li class="menu-item"><a href="#">Tablets</a></li>
-                                                                    <li class="menu-item"><a href="#">Audio &
-                                                                        Theater</a></li>
-                                                                    <li class="menu-item"><a href="#">Bestseller</a>
                                                                     </li>
-                                                                    <li class="menu-item"><a href="#">Top Rated</a></li>
-                                                                    <li class="menu-item"><a href="#">Tires</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Factory</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Audio</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Smart
-                                                                        Audio</a></li>
-                                                                    <li class="menu-item"><a href="#">Mirror
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Hats</a></li>
-                                                                    <li class="menu-item"><a href="#">Tech
-                                                                        Audio</a></li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
+
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -270,47 +224,16 @@
                                         </div>
                                     </li>
                                     <li class="menu-item-has-children arrow item-megamenu">
-                                        <a href="#" class="dropdown-toggle">Exterior</a>
                                         <span class="toggle-submenu hidden-md"></span>
                                         <div class="submenu parent-megamenu megamenu">
                                             <div class="row">
                                                 <div class="submenu-banner submenu-banner-menu-1">
                                                     <div class="col-md-4">
                                                         <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Fashion WoMen’s</h6>
+                                                            <h5 class="dropdown-menu-title">美容</h5>
                                                             <div class="dropdown-menu-content">
                                                                 <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Wheels
                                                                     </a></li>
-                                                                    <li class="menu-item"><a href="#">Tablets</a></li>
-                                                                    <li class="menu-item"><a href="#">Audio &
-                                                                        Theater</a></li>
-                                                                    <li class="menu-item"><a href="#">Bestseller</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Top Rated</a></li>
-                                                                    <li class="menu-item"><a href="#">Tires</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Factory</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Audio</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Smart
-                                                                        Audio</a></li>
-                                                                    <li class="menu-item"><a href="#">Mirror
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Hats</a></li>
-                                                                    <li class="menu-item"><a href="#">Tech
-                                                                        Audio</a></li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -319,65 +242,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li><a href="#">Audio</a>
-                                    </li>
-                                    <li><a href="#">Interior</a></li>
-                                    <li class="menu-item-has-children arrow item-megamenu">
-                                        <a href="#" class="dropdown-toggle">Lighting</a>
-                                        <span class="toggle-submenu hidden-md"></span>
-                                        <div class="submenu parent-megamenu megamenu">
-                                            <div class="row">
-                                                <div class="submenu-banner submenu-banner-menu-1">
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Performances</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Audi
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Sealed Beam </a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">System
-                                                                        Audio</a></li>
-                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
-                                                                    <li class="menu-item"><a href="#">Projector</a></li>
-                                                                    <li class="menu-item"><a href="#">Tires</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Factory</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="dropdown-menu-info">
-                                                            <h6 class="dropdown-menu-title">Audio</h6>
-                                                            <div class="dropdown-menu-content">
-                                                                <ul class="menu">
-                                                                    <li class="menu-item"><a href="#">Audio</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Phone
-                                                                    </a></li>
-                                                                    <li class="menu-item"><a href="#">Lighting</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Repair Parts</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">New Arrivals</a>
-                                                                    </li>
-                                                                    <li class="menu-item"><a href="#">Wheels</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="#">Performance</a></li>
-                                    <li><a href="#">Repair Parts</a></li>
-                                    <li><a href="#">System</a></li>
-                                    <li><a href="#">Wheels</a></li>
-                                    <li><a href="#">Wheels</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -395,7 +260,6 @@
 
                                 </li>
                                 <li class="arrow">
-                                    <a href="#" class="dropdown-toggle">新闻</a>
                                     <span class="toggle-submenu hidden-md"></span>
 
                                 </li>
