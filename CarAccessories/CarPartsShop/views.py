@@ -1,7 +1,12 @@
-import hashlib
-from django.shortcuts import render
 from .models import *
+from django.shortcuts import render
+from .testspider import ValidCodeImg
+from django.http import JsonResponse
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 
+
+import time
+import hashlib
 # Create your views here.
 
 def setPassword(password):
@@ -36,4 +41,33 @@ def shop_register(request):
     return render(request,'shop/shop_register.html',locals())
 
 def shop_login(request):
-    return render(request,'shop/shop_login.html')
+    error_message = ''
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        if email:
+            #首先检测email有没有
+            user = RegisterUser.objects.filter(email=email)
+            if user:#如果正确
+                db_password = user.password#存入数据库的密码
+                password = setPassword(password)#从前端传过来的密码
+                if db_password == password:#判断与数据库中加密后的密码是否一致
+                    response = HttpResponseRedirect('shop/index/')
+                    response.set_cookie('username',user.email)
+                    response.session['username'] = user.email
+                    return response
+                else:
+                    error_message = '密码错误'
+            else:
+                error_message = '用户名不存在'
+        else:
+            error_message = '邮箱不可以为空'
+
+    return render(request,'shop/shop_login.html',locals())
+def save_code_img(request):
+    img_code = '404'
+    if request.method == "GET":
+        code_img = ValidCodeImg()
+        img_code = code_img.create_img()
+        # code = code_img.get_random_string()
+    return JsonResponse({'code': img_code})

@@ -5,4 +5,8 @@ class RegisterUser(models.Model):
 class UserInfo(models.Model):
     email = models.EmailField()
     username = models.CharField(max_length=32)
+
+
+
+
 # Create your models here.

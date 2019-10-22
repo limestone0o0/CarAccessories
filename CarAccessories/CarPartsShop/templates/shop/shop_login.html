@@ -16,25 +16,26 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <form class="login" method="post">
+                            {% csrf_token %}
                             <p class="form-row form-row-wide">
                                 <label>邮箱或者手机号<span class="required"></span></label>
                                 <input type="text" value="" name="username"
-                                       placeholder="请输入邮箱或者手机号" class="input-text">
+                                       placeholder="请输入邮箱或者手机号" class="input-text" id="email">
                             </p>
                             <p class="form-row form-row-wide">
                                 <label>密码<span class="required"></span></label>
-                                <input type="text" value="" name="password"
-                                       placeholder="请输入密码" class="input-text">
+                                <input type="password" value="" name="password"
+                                       placeholder="请输入密码" class="input-text" id="password">
                             </p>
                             <p class="form-row col-lg-6">
                                 <label>验证码<span class="required"></span></label>
                                 <input type="text" value="" name="authcode"
-                                       placeholder="请输入验证码" class="input-text">
+                                       placeholder="请输入验证码" class="input-text" id="inputcode">
                             </p>
                                  <p class="form-row col-lg-6">
                                 <label>验证码<span class="required"></span></label>
-                                <input type="text" value="" name="authcode"
-                                       placeholder="请输入验证码" class="input-text">
+                                     <a href="javascript:void(0);" onclick="myreload()"><img   id="authcode"
+                                        class="input-text"></a>
                             </p>
                             <ul class="inline-block">
                                 <li><label class="inline"><input type="checkbox"><span class="input"></span>记住密码</label>
@@ -42,7 +43,7 @@
                             </ul>
                             <a href="#" class="forgot-password">忘记密码?</a>
                             <p class="form-row">
-                                <input type="submit" value="登录" name="register" class="button-submit">
+                                <input type="submit" value="登录" name="register" class="button-submit loginbutton" >
                             </p>
                         </form>
                     </div>
@@ -51,3 +52,62 @@
         </div>
     </main><!-- end MAIN -->
 {% endblock %}
+{% block js %}
+    <script>
+    $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+    var CODE = '';
+
+    $('#inputcode').blur(validate);
+    $('#email').blur(match_email);
+    function match_email() {
+        var username = $('#email').val();
+        if (username){
+            var p_pattern = /^1[345678]\d{9}$/;
+            var e_pattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            var res = username.match(p_pattern);
+            var result = username.match(e_pattern);
+            if(!res && !result){
+                $('.loginbutton').attr('disabled','disabled');
+            }
+        }
+    }
+
+        myreload();
+        function myreload() {
+                $.ajax(
+                    {
+                        url:"http://127.0.0.1:8000/shop/sci/",
+                        type:'get',
+                        data:'',
+                        success:function (data) {
+
+                            CODE = data['code'];
+                            console.log(CODE.toUpperCase());
+                            img = "/static/shop/assets/codeimgs/code_verify.png?v1="+Math.random();
+                            $('#authcode').attr('src',img);
+                        },
+                        error:function (error) {
+                            console.log(error)
+                        }
+                    }
+                )
+        }
+
+       function validate() {
+            var inputCode = (document.getElementById("inputcode").value).toUpperCase();//获取输入的验证码并转化为大写
+            var authcode = CODE.toUpperCase();
+            if (inputCode.length <= 5){//若输入的验证码长度为0
+                alert("请输入验证码！");//则弹出请输入验证码
+            }
+            else if (inputCode !== authcode){//若输入的验证码与产生的验证码不一样时
+                    alert("验证码输入错误！@_@");//弹出验证码错误
+                    myreload();//刷新验证码
+                    $("#inputcode").val("");//清空文本框
+            }
+        }
+
+    </script>
+{% endblock %}
+
