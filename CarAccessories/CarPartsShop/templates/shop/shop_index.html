@@ -1,0 +1,849 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block content %}
+    <!-- MAIN -->
+    <main class="site-main">
+        <div class="block-slide">
+            <div class="container">
+                <div class="main-slide slide-opt-3">
+                    <div class="owl-carousel nav-style5" data-nav="true" data-autoplay="false" data-dots="false"
+                         data-loop="true" data-margin="0"
+                         data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":1}}'>
+                        {% for s in first_shop_temp1 %}
+                        <div class="item-slide item-slide-1">
+                            <div class="container">
+                                <div class="slide-desc slide-desc-1">
+                                    <div class="p-primary"></div>
+                                    <p>{{s.name }}</p>
+                                    <a href="#" class="btn-shop-now">现在购买</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% for ss in first_shop_temp2 %}
+                <div class="promotion-banner banner-slide style-4 hidden-sm hidden-xs">
+                    <a href="#" class="banner-img"><img src="{{ ss.img }}" style="border: 1px solid lightgrey;height: 200px;width: 170px;" alt="banner1"></a>
+
+                    <div class="promotion-banner-inner">
+                        <h4>{{ ss.price }}</h4>
+                        <br><br><br><br>
+                        <a class="banner-link" href="#">现在去买</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="block-top-categori">
+            <div class="container">
+                <div class="title-of-section"><span>热门分类</span></div>
+                <div class="owl-carousel nav-style2" data-nav="true" data-autoplay="false" data-dots="false"
+                     data-loop="true" data-margin="30"
+                     data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}'>
+                    {% for i in car_type %}
+                    <div class="block-top-categori-item">
+                        <a href="#"><img src="{{ i.img }}" style="width: 200px;height: 200px" alt="c1"></a>
+                        <div class="block-top-categori-title">{{ i.name }}</div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="block-feature-product">
+            <div class="container">
+                <div class="title-of-section"><span>特色产品</span></div>
+                <div class="tab-product tab-product-fade-effect">
+                    <ul class="box-tabs nav-tab">
+                        <li class="active"><a  href="/shop/shop_list/">所有产品</a></li>
+{#                        <li><a data-toggle="tab" href="#tab-2">Audio</a></li>#}
+{#                        <li><a data-toggle="tab" href="#tab-2">Amplifiers</a></li>#}
+{#                        <li><a data-toggle="tab" href="#tab-1">Electronics</a></li>#}
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-container">
+                            <div id="tab-1" class="tab-panel active">
+                                <div class="owl-carousel nav-style2 border-background equal-container" data-nav="false"
+                                     data-autoplay="false" data-dots="false" data-loop="true" data-margin="30"
+                                     data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":4}}'>
+
+                                    {% for shop in shops_temp %}
+                                    <div class="owl-one-row">
+                                        {% for j in shop %}
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="{{ j.img }}" alt="f1"></a>
+                                                    </div>
+
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">{{ j.name }}</a>
+                                                    </div>
+                                                    <span class="price price-dark">
+
+                                                            <ins>{{ j.price }} <span> 元</span></ins>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">{{ j.comment_number }} <span>评论</span></span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+
+                                                            <a href="#" class="add-to-cart">加入购物车</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-panel">
+                                <div class="owl-carousel nav-style2 border-background equal-container" data-nav="false"
+                                     data-autoplay="false" data-dots="false" data-loop="true" data-margin="30"
+                                     data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":4}}'>
+                                    <div class="owl-one-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f1.jpg" alt="f1"></a>
+                                                    </div>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Wheel With Inserts</a>
+                                                    </div>
+                                                    <span class="price price-dark">
+
+                                                            <ins>$229.00</ins>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f6.jpg" alt="f6"></a>
+                                                    </div>
+                                                    <span class="onnew style2">New</span>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Fleece Performance
+                                                    </a></div>
+                                                    <span class="price price-dark">
+
+                                                            <ins>$229.00</ins>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-one-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f2.jpg" alt="f2"></a>
+                                                    </div>
+                                                    <span class="onnew">New</span>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">A-Pillar Gauge Kit</a>
+                                                    </div>
+                                                    <span class="price price-dark">
+
+                                                            <ins>$229.00</ins>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f7.jpg" alt="f7"></a>
+                                                    </div>
+                                                    <span class="onsale style2">-50%</span>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Cold Air Intake
+                                                    </a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-one-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f3.jpg" alt="f3"></a>
+                                                    </div>
+                                                    <span class="onsale">-50%</span>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Elite-X Sport Seats
+                                                        l</a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f8.jpg" alt="f8"></a>
+                                                    </div>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Mulisha Exhaust System
+                                                    </a></div>
+                                                    <span class="price price-dark">
+
+                                                            <ins>$229.00</ins>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-one-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f4.jpg" alt="f4"></a>
+                                                    </div>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">PowerMax Turbo Kit
+                                                    </a></div>
+                                                    <span class="price price-dark">
+
+                                                            <ins>$229.00</ins>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f9.jpg" alt="f9"></a>
+                                                    </div>
+                                                    <span class="onsale style2">-50%</span>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Econo-Matic Complete
+                                                    </a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-one-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f5.jpg" alt="f5"></a>
+                                                    </div>
+                                                    <span class="onsale">-50%</span>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Crock-Pot. Programmable
+                                                        Cook</a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner equal-elem">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="/static/assets/images/home1/f10.jpg"
+                                                                         alt="f10"></a>
+                                                    </div>
+                                                    <a href="#" class="quick-view">Quick View</a>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Xbox One S Halo Collection
+                                                    </a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                    <div class="group-btn-hover">
+                                                        <div class="inner">
+                                                            <a href="#" class="compare"><i
+                                                                    class="flaticon-refresh-square-arrows"></i></a>
+                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="#" class="wishlist"><i class="fa fa-heart-o"
+                                                                                            aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-recent-view">
+            <div class="container">
+                <div class="title-of-section"><span>最近浏览</span></div>
+                <div class="owl-carousel nav-style2 border-background equal-container" data-nav="true"
+                     data-autoplay="false" data-dots="false" data-loop="true" data-margin="30"
+                     data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1000":{"items":4}}'>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="/static/assets/images/home1/r1.jpg" alt="r1"></a>
+                                </div>
+                                <span class="onsale">-50%</span>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+
+                                    <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="product-name"><a href="#">GM Original Equipment</a></div>
+                                <span class="price">
+
+                                        <ins>$229.00</ins>
+
+                                        <del>$259.00</del>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag"
+                                                                       aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="/static/assets/images/home1/r2.jpg" alt="r2"></a>
+                                </div>
+                                <span class="onnew">new</span>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+
+                                    <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="product-name"><a href="#">Style Steering Wheel</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag"
+                                                                       aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="/static/assets/images/home1/r3.jpg" alt="r3"></a>
+                                </div>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+
+                                    <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="product-name"><a href="#">Headlights with DRL</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag"
+                                                                       aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="/static/assets/images/home1/r4.jpg" alt="r4"></a>
+                                </div>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                    <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="product-name"><a href="#">Homasy Portable Handheld</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag"
+                                                                       aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="/static/assets/images/home1/r5.jpg" alt="r5"></a>
+                                </div>
+                                <span class="onsale">-50%</span>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+
+                                    <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="product-name"><a href="#">Parka With a Hood</a></div>
+                                <span class="price">
+
+                                        <ins>$229.00</ins>
+
+                                        <del>$259.00</del>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag"
+                                                                       aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="/static/assets/images/home1/r6.jpg" alt="r6"></a>
+                                </div>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                    <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="product-name"><a href="#">Elite-X Sport Seats</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag"
+                                                                       aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </main><!-- end MAIN -->
+{% endblock %}

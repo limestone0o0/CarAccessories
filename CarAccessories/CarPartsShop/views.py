@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+from django.shortcuts import render
+>>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
 from .models import *
 from django.shortcuts import render
 from .testspider import ValidCodeImg
@@ -5,8 +9,14 @@ from django.http import JsonResponse
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 
 
+<<<<<<< HEAD
 import time
 import hashlib
+=======
+import random
+import hashlib
+
+>>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
 # Create your views here.
 
 def setPassword(password):
@@ -15,8 +25,27 @@ def setPassword(password):
     result = md5.hexdigest()
     return result
 
+
 def index_shop(request):
-    return render(request, 'shop/index_shop.html')
+    car_type = CarpartsshopCartype.objects.all()
+    own_shops = CarpartsshopCarparts.objects.all().order_by('price')[0:8]
+    first_shop = CarpartsshopCarparts.objects.all().order_by('grade')
+    first_shop_temp1 = first_shop[0:5]
+    first_shop_temp2 = first_shop[5:7]
+    shops_temp = []
+    for i in range(0, 8, 2):
+        shops_temp.append(own_shops[i:i+2])
+
+    return render(request, 'shop/shop_index.html', locals())
+
+
+def list_shop(request):
+    shops_list = CarpartsshopCarparts.objects.all()[0:18]
+    first_shop = CarpartsshopCarparts.objects.all().order_by('grade')[0]
+    car_type = CarpartsshopCartype.objects.all()
+
+    return render(request, 'shop/shop_list.html', locals())
+
 
 def shop_register(request):
     error_message = ''
@@ -25,10 +54,10 @@ def shop_register(request):
         password = request.POST.get('password')
         re_password = request.POST.get('repassword')
         if email:
-            user = RegisterUser.objects.filter(email=email).first()
+            user = CarpartsshopRegisteruser.objects.filter(email=email).first()
             if not user :
                 if password == re_password:
-                    new_user = RegisterUser()
+                    new_user = CarpartsshopRegisteruser()
                     new_user.email = email
                     new_user.password = setPassword(password)
                     new_user.save()
@@ -41,6 +70,7 @@ def shop_register(request):
     return render(request,'shop/shop_register.html',locals())
 
 def shop_login(request):
+<<<<<<< HEAD
     error_message = ''
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -71,3 +101,9 @@ def save_code_img(request):
         img_code = code_img.create_img()
         # code = code_img.get_random_string()
     return JsonResponse({'code': img_code})
+=======
+    return render(request,'shop/shop_login.html')
+
+
+
+>>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042

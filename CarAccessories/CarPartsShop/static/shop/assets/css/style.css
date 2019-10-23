@@ -285,10 +285,10 @@ input[type=password] {
 	
 	src: url("../fonts/flaticon/Flaticon.eot");
 	
-	src: url(https://tuongnam.com.vn/rhyssa/assets/fonts/flaticon/Flaticon.eot?#iefixx") format("embedded-opentype"),
+	src: url("https://tuongnam.com.vn/rhyssa/assets/fonts/flaticon/Flaticon.eot?#iefixx") format("embedded-opentype"),
 	url("../fonts/flaticon/Flaticon.woff") format("woff"),
 	url("../fonts/flaticon/Flaticon.ttf") format("truetype"),
-	url(https://tuongnam.com.vn/rhyssa/assets/fonts/flaticon/Flaticon.svg#Flaticonn") format("svg");
+	url("https://tuongnam.com.vn/rhyssa/assets/fonts/flaticon/Flaticon.svg#Flaticonn") format("svg");
 	
 	font-weight: normal;
 	
@@ -301,7 +301,7 @@ input[type=password] {
 		
 		font-family: "Flaticon";
 		
-		src: url(https://tuongnam.com.vn/rhyssa/assets/css/Flaticon.svg#Flaticonn") format("svg");
+		src: url("https://tuongnam.com.vn/rhyssa/assets/css/Flaticon.svg#Flaticonn") format("svg");
 		
 	}
 	
@@ -2392,22 +2392,22 @@ input[type=password] {
 	height: 750px;
 }
 .slide-opt-1 .item-slide-1 {
-	background-image: url(../images/home2/slide-1.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 }
 .slide-opt-1 .item-slide-2 {
-	background-image: url(../images/home2/slide-2.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 }
 .slide-opt-1 .item-slide-3 {
-	background-image: url(../images/home2/slide-3.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 }
 .slide-opt-3 .item-slide-1 {
-	background-image: url(../images/home1/slide1.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 }
 .slide-opt-3 .item-slide-2 {
-	background-image: url(../images/home1/slide2.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 }
 .slide-opt-3 .item-slide-3 {
-	background-image: url(../images/home1/slide3.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 }
 .slide-opt-5 .item-slide-1 {
 	background-image: url(../images/home3/slide1.jpg);
@@ -8571,7 +8571,7 @@ label.inline {
 }
 .block-sale-product {
 	
-	background-image: url(../images/home1/background-product.jpg);
+	background-image: url(https://p0.meituan.net/wedding/290dabbb925edeb4a70b1b326cb1b9ff287538.jpg%40640w_480h_1e_1c_1l_80q%7Cwatermark%3D0.webp);
 	
 	background-repeat: no-repeat;
 	

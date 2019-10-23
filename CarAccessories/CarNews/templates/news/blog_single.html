@@ -1,0 +1,147 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title%}
+
+{% endblock %}
+{% block css %}
+<script type="text/javascript" src="http://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    <!-- MAIN -->
+    <main class="site-main blog-single">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <li><a href="#">主页 </a></li>
+                <li class="active"><a href="#">汽配之家新闻</a></li>
+            </ol>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 float-none float-right">
+                    <div class="main-content">
+                        <div class="post-detail">
+                            <div class="post-item" id="postsnewsapi">
+                                <div class="post-thumb">
+                                    <img v-bind:src="'https://'+site.news_art_img" alt="post-image">
+                                    <span class="date" > <span>来自</span><span v-text="site.news_time_str"></span></span>
+                                </div>
+                                <div class="post-item-info">
+                                    <h3 class="post-name"><a href="#"><span v-text="site.news_title"></span></a></h3>
+                                    <div class="post-metas">
+                                         <span>时间: </span><span class="author"><span v-text="site.news_art_time"></span></span>
+                                        <span >阅读</span><span class="comment" v-text="site.news_read_num"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="post-content">
+                                        <p v-text="site.news_art_content"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-footer">
+                                <div class="tag">
+                                    <span>标签</span>
+                                    <a href="#">示例标签</a>
+                                    <a href="#">示例标签</a>
+                                    <a href="#">示例标签</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-comments">
+                            <div class="block-title">评论</div>
+                            <div class="block-content">
+                                <form>
+                                    <div class="form-group col-md-6 padding-left">
+                                        <label class="title">姓名*</label>
+                                        <input type="text" class="form-control" id="forName">
+                                    </div>
+                                    <div class="form-group col-md-6 padding-right">
+                                        <label class="title">邮箱*</label>
+                                        <input type="email" class="form-control" id="forEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="title">您的评论</label>
+                                        <textarea class="form-control" id="forContent" rows="9">这是一个评论测试</textarea>
+                                    </div>
+                                    <button type="submit" class="btn-comment">提交评论</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="sidebar-left">
+                        <div class="block-search-blog">
+                            <form class="searchform">
+                                <div class="control">
+                                    <input type="text" placeholder="请输入搜索条件" name="text"
+                                           class="input-subscribe">
+                                    <button type="submit" class="btn-searchform"><i class="fa fa-search"
+                                                                                    aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="block-recent-post-blog">
+                            <div class="block-title">最近快讯</div>
+                            <ul>
+                                <li class="recent-post-item"><a href="#">1</a></li>
+                                <li class="recent-post-item"><a href="#">2</a>
+                                </li>
+                                <li class="recent-post-item"><a href="#">3</a></li>
+                                <li class="recent-post-item"><a href="#">4</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block-categories-blog">
+                            <div class="block-title">快讯分类</div>
+                            <ul>
+                                <li class="categories-item"><a href="#">示例快讯</a></li>
+                                <li class="categories-item"><a href="#">示例快讯</a></li>
+                                <li class="categories-item"><a href="#">示例快讯</a></li>
+                                <li class="categories-item"><a href="#">示例快讯</a></li>
+                                <li class="categories-item"><a href="#">示例快讯</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main><!-- end MAIN -->
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        new Vue({
+        el: '#postsnewsapi',
+        data: {
+            site: {}
+    },
+    created:function () {
+        var part =/id=(\d+)/;
+        var url_get = window.location.href;
+        var id = url_get.match(part)[1];
+        var self = this;
+        $.ajax(
+            {
+                url:'http://10.10.14.182/news/newsapi/',
+                type:'GET',
+                data:{
+                    'format': 'json',
+                    'id': id,
+                },
+                dataType:"json",
+                timeout:'2000',
+            }
+        ).then(function (res) {
+            self.site = res['newsdata'];
+        }).fail(function () {
+                console.log('失败');
+            })
+    }
+    });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,180 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title %}
+汽配之家快讯
+{% endblock %}
+{% block css%}
+<script type="text/javascript" src="http://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+{% endblock %}
+{% block content %}
+<!-- MAIN -->
+    <main class="site-main blog-single">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <li><a href="#">首页</a></li>
+                <li ><a href="#">汽配之家快讯</a></li>
+            </ol>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 float-none float-right">
+                    <div class="main-content">
+                        <div class="post-list post-items posts" id="postsnewsapi">
+
+                            <div class="post-item" v-for="site in sites">
+                                <div class="post-thumb ">
+                                    <a href="#" class="postsaflag"><img v-bind:src="'https://'+site.news_list_img" class="postsimgflag" style="height: 200px; width: 400px" alt="post-image-3"></a>
+                                    <span class="date" > <span>来自</span><span v-text="site.news_time_str"></span></span>
+                                </div>
+                                <div class="post-item-info">
+                                    <h3 class="post-name"><a href="#" v-text="site.news_title"></a>
+                                    </h3>
+                                    <div class="post-metas">
+                                        <span>时间: </span><span class="author"><span v-text="site.news_art_time"></span></span>
+                                        <span >阅读</span><span class="comment" v-text="site.news_read_num"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="post-content">
+                                        <p v-text="site.news_abstract"></p>
+                                        <a href="javascript:void(0);" v-bind:id="site.id" target="_blank" class="read-more" onclick="godeail(this)">继续阅读</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="pagination">
+                            <li class="firsttab" style="position: relative;left: 630px"><a href="javascript:void(0);" onclick="firstpage()">首页</a></li>
+                            <ul class="nav-links">
+                                <li class="active pagelist" ><a href="#" onclick="pagechange(this)">1</a></li>
+                                <li class="pagelist"><a href="#" onclick="pagechange(this)">2</a></li>
+                                <li class="pagelist"><a href="#" onclick="pagechange(this)">3</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="sidebar-left">
+                        <div class="block-search-blog">
+                            <form class="searchform">
+                                <div class="control">
+                                    <input type="text" placeholder="请输入搜索内容." name="text"
+                                           class="input-subscribe">
+                                    <button type="submit" class="btn-searchform"><i class="fa fa-search"
+                                                                                    aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="block-recent-post-blog">
+                            <div class="block-title">最近快讯</div>
+                            <ul>
+                                <li class="recent-post-item"><a href="#">Gallery Post with Supported Animation</a></li>
+                                <li class="recent-post-item"><a href="#">Announcement – Standard Post without Image</a>
+                                </li>
+                                <li class="recent-post-item"><a href="#">We’re the best Designers from UK</a></li>
+                                <li class="recent-post-item"><a href="#">A Beautiful Day – Standard Post with Image</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block-categories-blog">
+                            <div class="block-title">文章类型</div>
+                            <ul>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                                <li class="categories-item"><a href="#">示例类型</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main><!-- end MAIN -->
+{% endblock %}
+{% block js %}
+    <script>
+
+     var v1 = new Vue({
+        el: '#postsnewsapi',
+        data: {
+            sites: [{},{},{},{},{},{},{},{}]
+        },
+    created:function () {
+        {#var self = this;#}
+        this.postdata(this.sites);
+        },
+    methods: {
+            postdata(page=1) {
+                var sitetemp = [];
+                $.ajax(
+                    {
+                        url: 'http://10.10.14.182/news/newsapi/',
+                        type: 'GET',
+                        data: {
+                            'format': 'json',
+                            'page': page,
+                        },
+                        dataType: "json",
+                        timeout: '2000',
+                        async:false,
+                        success:function (res) {
+                            sitetemp =  res['newsdata'];
+                        },
+                        error:function (err) {
+                            console.log(err)
+                        }
+                    }
+                );
+                this.sites = sitetemp
+            }
+    }
+
+    });
+
+    function godeail(thiss) {
+        {#window.location.href='/news/news_single?id='+thiss.id#}
+        window.open("/news/news_single?id="+thiss.id)
+    }
+
+    function pagechange(self) {
+        $('.pagelist').removeAttr('class', 'active');
+        var page = parseInt(self.childNodes[0]['textContent']);
+        {#console.log($(self.parentNode).next().next().text())#}
+        if(self.parentNode.parentNode.firstElementChild.childNodes[0]['textContent']==page) {
+            if(page>1) {
+                $(self).text(parseInt(page) - 1)
+                {#$(self).next().text(5)#}
+                $(self).parent().next().children().text(page)
+                $(self).parent().next().attr('class','active pagelist');
+                $(self).parent().next().next().children().text(page + 1)
+                v1.postdata(page);
+            }else {
+                $(self).parent().attr('class','active pagelist');
+            }
+        }else {
+
+            var temp = parseInt(self.parentNode.parentNode.firstElementChild.childNodes[0]['textContent']);
+            if((page-temp)===1) {
+                $(self).parent().attr('class','active pagelist');
+            }else {
+                $(self).text(parseInt(page)+1)
+                $(self).parent().prev().children().text(page)
+                $(self).parent().prev().attr('class','active pagelist');
+                $(self).parent().prev().prev().children().text(page - 1)
+            }
+
+            v1.postdata(page);
+        }
+    }
+    function firstpage() {
+        window.location.href="/news/news_list/";
+    }
+
+    </script>
+
+{% endblock %}
+
+
+

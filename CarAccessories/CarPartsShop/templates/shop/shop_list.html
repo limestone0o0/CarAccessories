@@ -1,0 +1,426 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title %}
+商品列表
+{% endblock %}
+{% block content %}
+
+
+    <!-- MAIN -->
+    <main class="site-main product-list product-grid">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <li><a href="#">主页</a></li>
+                <li class="active"><a href="#">商品列表</a></li>
+            </ol>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 float-none float-right">
+                    <div class="main-content">
+                        <div class="promotion-banner style-3">
+                            <img src="/static/shop/assets/images/picfirst.jpg" style="height: 200px;width: 800px">
+                        </div>
+                        <div class="toolbar-products">
+                            <h4 class="title-product">商品列表</h4>
+                            <div class="toolbar-option">
+                                <div class="toolbar-sort">
+                                    <select class="chosen-select sorter-options form-control">
+                                        <option selected="selected" value="position">评分最高</option>
+                                        <option value="price">价钱最低</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="products products-list products-grid equal-container auto-clear">
+                            {% for shop in shops_list %}
+                            <div class="product-item style1 width-33 col-md-4 col-sm-6 col-xs-6 equal-elem">
+                                <div class="product-inner">
+                                    <div class="product-thumb">
+                                        <div class="thumb-inner">
+                                            <a href="#"><img src="{{ shop.img }}" style="height: 200px"></a>
+                                        </div>
+                                        <span class="onsale">-50%</span>
+                                        <a href="#" class="quick-view">详情</a>
+                                    </div>
+                                    <div class="product-innfo">
+                                        <div class="product-name"><a href="#">{{ shop.name }}
+                                        </a></div>
+                                        <span class="price">
+
+                                                <ins>{{ shop.price }}元</ins>
+
+{#                                                <del>{{ shop.price}}</del>#}
+
+                                            </span>
+                                        <span class="star-rating">
+
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                <span class="review">{{ shop.comment_number }}评论</span>
+
+                                            </span>
+                                        <div class="single-add-to-cart">
+                                            <a href="#" class="btn-add-to-cart col-lg-8">+购物车</a>
+                                            <a href="#" class="wishlist"><i class="fa fa-heart-o col-lg-4"
+                                                                            aria-hidden="true"></i>收藏</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="pagination">
+                            <ul class="nav-links">
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li class="back-next"><a href="#">Next</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4">
+                    <div class="col-sidebar">
+                        <div class="filter-options">
+                            <div class="block-title">商品属性</div>
+                            <div class="block-content">
+                                <div class="filter-options-item filter-categori">
+                                    <div class="filter-options-title">分类</div>
+                                    <div class="filter-options-content">
+                                        <ul>
+                                            {% for type in car_type %}
+                                            <li><label class="inline"><input type="checkbox"><span class="input"></span>{{ type.name }}
+                                            </label></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="filter-options-item filter-price">
+                                    <div class="filter-options-title">价格</div>
+                                    <div class="filter-options-content">
+                                        <div class="price_slider_wrapper">
+                                            <div data-label-reasult="Price:" data-min="0" data-max="3000" data-unit="$"
+                                                 class="slider-range-price " data-value-min="85" data-value-max="2000">
+                                                <span class="text-right">Filter</span>
+                                            </div>
+                                            <div class="price_slider_amount">
+                                                <div class="price_label">
+                                                    Price: <span class="from">$85</span>-<span class="to">$2000</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="block-latest-roducts">
+                            <div class="block-title">最近浏览</div>
+                            <div class="block-latest-roducts-content">
+                                <div class="owl-carousel nav-style2" data-nav="false" data-autoplay="false"
+                                     data-dots="false" data-loop="true" data-margin="0"
+                                     data-responsive='{"0":{"items":1},"600":{"items":1},"1000":{"items":1}}'>
+                                    <div class="owl-ones-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p1.jpg" alt="p1"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Homasy Portable</a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p2.jpg" alt="p2"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Lexani Forged</a>
+                                                    </div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p3.jpg" alt="p3"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Custom Mirrors
+                                                    </a></div>
+                                                    <span class="price price-dark">
+
+                                                                <ins>$229.00</ins>
+
+                                                            </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p4.jpg" alt="p4"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Series Intake System </a>
+                                                    </div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="owl-ones-row">
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p1.jpg" alt="p1"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Homasy Portable</a></div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p2.jpg" alt="p2"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Lexani Forged</a>
+                                                    </div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p3.jpg" alt="p3"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Custom Mirrors
+                                                    </a></div>
+                                                    <span class="price price-dark">
+
+                                                                <ins>$229.00</ins>
+
+                                                            </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product-item style1">
+                                            <div class="product-inner">
+                                                <div class="product-thumb">
+                                                    <div class="thumb-inner">
+                                                        <a href="#"><img src="assets/images/blog/p4.jpg" alt="p4"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-innfo">
+                                                    <div class="product-name"><a href="#">Series Intake System </a>
+                                                    </div>
+                                                    <span class="price">
+
+                                                            <ins>$229.00</ins>
+
+                                                            <del>$259.00</del>
+
+                                                        </span>
+                                                    <span class="star-rating">
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+
+                                                            <span class="review">5 Review(s)</span>
+
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </main><!-- end MAIN -->
+
+
+{% endblock %}
