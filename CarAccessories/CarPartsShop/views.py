@@ -40,8 +40,7 @@ def index_shop(request):
 
 
 def list_shop(request):
-    shops_list = CarpartsshopCarparts.objects.all()[0:18]
-    first_shop = CarpartsshopCarparts.objects.all().order_by('grade')[0]
+    shops_list = CarpartsshopCarparts.objects.filter(id__lte=18)
     car_type = CarpartsshopCartype.objects.all()
 
     return render(request, 'shop/shop_list.html', locals())
