@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-=======
-from django.shortcuts import render
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
+
 from .models import *
 from django.shortcuts import render
 from .testspider import ValidCodeImg
 from django.http import JsonResponse
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
+from django.core.paginator import Paginator
 
-
-<<<<<<< HEAD
-import time
-import hashlib
-=======
 import random
 import hashlib
 
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
 # Create your views here.
 
 def setPassword(password):
@@ -39,9 +31,31 @@ def index_shop(request):
     return render(request, 'shop/shop_index.html', locals())
 
 
-def list_shop(request):
-    shops_list = CarpartsshopCarparts.objects.filter(id__lte=18)
+def set_pages(page, last_page):
+    if page <= 1 or page-2 <=1:
+        if page + 5 <= last_page:
+            return range(1, 6)
+        else:
+            return range(1, last_page+1)
+    elif page >= last_page or page+2 >= last_page:
+        if last_page - 5 >= 1:
+            return range(last_page-4, last_page+1)
+        else:
+            return range(1, last_page+1)
+    else:
+        return range(page-2, page+3)
+
+
+def list_shop(request, page):
+    page = int(page)
+    #--------
+    shops_list = CarpartsshopCarparts.objects.all()
+    #--------
     car_type = CarpartsshopCartype.objects.all()
+    paginator_obj = Paginator(shops_list, 12)
+    page_list = set_pages(page, paginator_obj.num_pages)
+    page_obj = paginator_obj.page(page)
+    query_set = page_obj.object_list
 
     return render(request, 'shop/shop_list.html', locals())
 
@@ -69,21 +83,22 @@ def shop_register(request):
     return render(request,'shop/shop_register.html',locals())
 
 def shop_login(request):
-<<<<<<< HEAD
+
     error_message = ''
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         if email:
             #首先检测email有没有
-            user = RegisterUser.objects.filter(email=email)
+            user = CarpartsshopRegisteruser.objects.filter(email=email)
+            user_info = CarpartsshopUserinfo.objects.filter(email=user.email)
             if user:#如果正确
                 db_password = user.password#存入数据库的密码
                 password = setPassword(password)#从前端传过来的密码
                 if db_password == password:#判断与数据库中加密后的密码是否一致
                     response = HttpResponseRedirect('shop/index/')
-                    response.set_cookie('username',user.email)
-                    response.session['username'] = user.email
+                    response.set_cookie('user_id',user_info.id)
+                    request.session['user_id'] = user_info.id
                     return response
                 else:
                     error_message = '密码错误'
@@ -100,9 +115,5 @@ def save_code_img(request):
         img_code = code_img.create_img()
         # code = code_img.get_random_string()
     return JsonResponse({'code': img_code})
-=======
-    return render(request,'shop/shop_login.html')
 
 
-
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042

@@ -39,14 +39,21 @@ class CarpartsshopRegisteruser(models.Model):
         managed = False
         db_table = 'CarPartsShop_registeruser'
 
+class Cart(models.Model):
+    name = models.CharField(max_length=128, null=False)
+    img = models.CharField(max_length=512, null=False)
+    price = models.CharField(max_length=32, null=False)
+    shops_num = models.IntegerField(null=False)
+    shops_total_price = models.IntegerField(null=False)
+
 
 class CarpartsshopUserinfo(models.Model):
     email = models.CharField(max_length=254)
     username = models.CharField(max_length=32)
+    cart_id =  models.ForeignKey(to=Cart, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
         db_table = 'CarPartsShop_userinfo'
-
 
 
