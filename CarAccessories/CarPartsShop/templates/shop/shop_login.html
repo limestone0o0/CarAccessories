@@ -19,7 +19,7 @@
                             {% csrf_token %}
                             <p class="form-row form-row-wide">
                                 <label>邮箱或者手机号<span class="required"></span></label>
-                                <input type="text" value="" name="username"
+                                <input type="text" value="" name="email"
                                        placeholder="请输入邮箱或者手机号" class="input-text" id="email">
                             </p>
                             <p class="form-row form-row-wide">
@@ -78,7 +78,7 @@
         function myreload() {
                 $.ajax(
                     {
-                        url:"http://127.0.0.1:8000/shop/sci/",
+                        url:"/shop/sci/",
                         type:'get',
                         data:'',
                         success:function (data) {

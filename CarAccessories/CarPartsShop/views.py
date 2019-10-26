@@ -67,13 +67,17 @@ def shop_register(request):
         password = request.POST.get('password')
         re_password = request.POST.get('repassword')
         if email:
-            user = CarpartsshopRegisteruser.objects.filter(email=email).first()
+            user = UserRegister.objects.filter(email=email).first()
             if not user :
                 if password == re_password:
-                    new_user = CarpartsshopRegisteruser()
+                    new_user = UserRegister()
                     new_user.email = email
                     new_user.password = setPassword(password)
+                    user_info = Userinfo()
+                    user_info.email = email
                     new_user.save()
+                    user_info.save()
+                    return HttpResponseRedirect('/shop/shop_login/')
                 else:
                     error_message = '两次密码不一致'
             else:
@@ -90,13 +94,13 @@ def shop_login(request):
         password = request.POST.get('password')
         if email:
             #首先检测email有没有
-            user = CarpartsshopRegisteruser.objects.filter(email=email)
-            user_info = CarpartsshopUserinfo.objects.filter(email=user.email)
-            if user:#如果正确
+            user = UserRegister.objects.filter(email=email).first()
+            user_info = Userinfo.objects.filter(email=email).first()
+            if user and user_info:#如果正确
                 db_password = user.password#存入数据库的密码
                 password = setPassword(password)#从前端传过来的密码
                 if db_password == password:#判断与数据库中加密后的密码是否一致
-                    response = HttpResponseRedirect('shop/index/')
+                    response = HttpResponseRedirect('/')
                     response.set_cookie('user_id',user_info.id)
                     request.session['user_id'] = user_info.id
                     return response
@@ -108,6 +112,8 @@ def shop_login(request):
             error_message = '邮箱不可以为空'
 
     return render(request,'shop/shop_login.html',locals())
+
+
 def save_code_img(request):
     img_code = '404'
     if request.method == "GET":
@@ -117,3 +123,123 @@ def save_code_img(request):
     return JsonResponse({'code': img_code})
 
 
+def search_cart_shops(request):
+    user_id = request.COOKIES.get('user_id')
+    message = {'status': '404', 'msg': '未找到', 'data': ''}
+    data_list = []
+    total_price = 0
+    rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
+    if len(rel) > 0:
+        for rel_ in rel:
+            shop = Cart.objects.get(id=rel_.cart_id)
+            if shop:
+                data = {}
+                data['name'] = shop.name
+                data['sid'] = shop.id
+                data['img'] = shop.img
+                data['price'] = shop.price
+                data['shops_num'] = shop.shops_num
+                data['shops_total_price'] = shop.shops_total_price
+                total_price += data['shops_total_price']
+                data_list.append(data)
+        message['status'] = '600'
+        message['msg'] = '保存成功！'
+        message['total_price'] = total_price
+
+    message['data'] = data_list
+    return JsonResponse(message)
+
+
+def add_cart_wish(request):
+    message = {'status': '404', 'msg': '请求错误'}
+    # {'shopid':shopid,'shopnums':1}
+    if request.method == 'POST':
+        user_id = request.COOKIES.get('user_id')
+        if user_id:
+            shop_id = request.POST.get('shopid')
+            shops_num = request.POST.get('shopnums')
+            user = Userinfo.objects.get(id=int(user_id))
+            shop = CarpartsshopCarparts.objects.get(id=int(shop_id))
+            cart = Cart()
+            cart.name = shop.name
+            shop_price = int(shop.price[1:-3])
+            cart.price = shop_price
+            cart.img = shop.img
+            cart.shops_num = int(shops_num)
+            cart.shops_total_price = shop_price * int(shops_num)
+            try:
+                cart.save()
+                user.save()
+            except:
+                message['status'] = '603'
+                message['msg'] = '保存失败,请重新提交'
+            else:
+                relation = RelationsCartUserInfo()
+                relation.userinfo_id = user.id
+                relation.cart_id = cart.id
+                relation.save()
+                message['status'] = '600'
+                message['msg'] = '保存成功！'
+        else:
+            message['status'] = '602'
+            message['msg'] = '用户不存在'
+
+    return JsonResponse(message)
+
+
+def del_cart_shops(request):
+    message = {'status': '404', 'msg': '请求错误'}
+    if request.method == 'GET':
+        sid = request.GET.get('sid')
+        if sid:
+            shop = Cart.objects.get(id=int(sid))
+            rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(request.COOKIES.get('user_id')))
+            try:
+                for i in rel:
+                    if i.cart_id == int(sid):
+                        i.delete()
+                shop.delete()
+            except:
+                message['status'] = '606'
+                message['msg'] = '删除失败'
+            else:
+                message['status'] = '605'
+                message['msg'] = '删除成功！'
+
+    return JsonResponse(message)
+
+
+def shop_cart(request):
+    user_id = request.COOKIES.get('user_id')
+    data_list = []
+    total_price = 0
+    rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
+    if len(rel) > 0:
+        for rel_ in rel:
+            shop = Cart.objects.get(id=rel_.cart_id)
+            if shop:
+                data = {}
+                data['name'] = shop.name
+                data['sid'] = shop.id
+                data['img'] = shop.img
+                data['price'] = shop.price
+                data['shops_num'] = shop.shops_num
+                data['shops_total_price'] = shop.shops_total_price
+                total_price += data['shops_total_price']
+                data_list.append(data)
+
+    return render(request, 'shop/shop_cart.html', locals())
+
+
+def clear_cart(request):
+    user_id = request.COOKIES.get('user_id')
+    cart_list = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
+    if cart_list:
+        for cart in cart_list:
+            try:
+                Cart.objects.filter(id=cart.cart_id).delete()
+                cart.delete()
+            except:
+                pass
+
+    return render(request, 'shop/shop_cart.html')

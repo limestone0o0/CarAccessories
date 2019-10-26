@@ -70,8 +70,8 @@
 
                                             </span>
                                         <div class="single-add-to-cart">
-                                            <a href="#" class="btn-add-to-cart col-lg-8">+购物车</a>
-                                            <a href="#" class="wishlist"><i class="fa fa-heart-o col-lg-4"
+                                            <a href="javascript:void(0);" id="addcart" class="btn-add-to-cart col-lg-8" onclick="addcart({{ shop.id }})">+购物车</a>
+                                            <a href="javascript:void(0);" id="addwish" class="wishlist"><i class="fa fa-heart-o col-lg-4"
                                                                             aria-hidden="true"></i>收藏</a>
                                         </div>
                                     </div>
@@ -431,4 +431,47 @@
     </main><!-- end MAIN -->
 
 
+{% endblock %}
+{% block js %}
+     <script src ="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"> </script>
+    <script>
+    $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+    function addcart(shopid){
+        var data = {'shopid':shopid,'shopnums':1};
+        $.ajax(
+            {
+                url: '/shop/add_cart_wish/',
+                type: 'POST',
+                data: data,
+
+                success:function (res) {
+                    if(res.status=='600'){
+                        alert(res['msg'])
+                        console.log(res)
+                        refresh();
+                    }
+                    else if(res.status=='603'){
+                        alert(res['msg'])
+                    }
+                    else if(res.status=='602'){
+                        window.location.href='/shop/shop_login/'
+                    }
+                    else {
+                        alert('操作有误');
+                        window.location.reload();
+                    }
+
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
+    }
+
+
+
+    </script>
 {% endblock %}

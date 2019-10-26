@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,800,900&display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700" rel="stylesheet">
+    <script type="text/javascript" src="http://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
     {% block css %}
 {% endblock %}
 </head>
@@ -73,9 +74,8 @@
                                     <select data-placeholder="All Categories"
                                             class="chosen-select categori-search-option">
                                         <option value="">所有类别</option>
-<<<<<<< HEAD
                                         </optgroup>
-=======
+
                                         <optgroup label="- 汽车配件">
                                             <option>坐垫</option>
                                             <option>LED灯</option>
@@ -85,7 +85,7 @@
                                         <optgroup label="- 汽车美容">
                                             <option>玻璃水</option>
 
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
+
                                         </optgroup>
                                     </select>
                                 </div>
@@ -105,21 +105,21 @@
                     <div class="col-md-2 nav-right">
                         <!-- block mini cart -->
                         <div class="block-minicart dropdown">
-                            <a class="minicart" href="#">
+                            <a class="minicart" href="/shop/shop_cart/">
 
                                     <span class="counter qty">
 
                                         <span class="cart-icon"><i class="fa fa-shopping-bag"
                                                                    aria-hidden="true"></i></span>
 
-                                        <span class="counter-number">2</span>
+                                        <span class="counter-number shops_nums">0</span>
 
                                     </span>
                                 <span class="counter-your-cart">
 
                                         <span class="counter-label">购物车</span>
 
-                                        <span class="counter-price">00.00元</span>
+                                        <span class="counter-price cart_tatal_price">0 </span><span>元</span>
 
                                     </span>
                             </a>
@@ -127,59 +127,38 @@
                                 <form>
                                     <div class="minicart-content-wrapper">
                                         <div class="subtitle">
-                                            你有 <span>2</span> 个商品 在你的购物车中
+                                            你有 <span class="shops_nums">0</span> 个商品 在你的购物车中
                                         </div>
                                         <div class="minicart-items-wrapper">
-                                            <ol class="minicart-items">
+                                            <ol class="minicart-items" id="jq_add_cart">
                                                 <!---两个商品-->
-                                                <li class="product-inner">
-                                                    <div class="product-thumb style1">
+                                                <li class="product-inner"  v-for="shop in shops" >
+                                                    <div class="product-thumb style1" >
                                                         <div class="thumb-inner">
-                                                            <a href="#"><img src=""
-                                                                             alt="c1"></a>
+                                                            <a href=""><img v-bind:src="shop.img" alt="c1"></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-innfo">
-                                                        <div class="product-name"><a href="#">Xbox One S Halo Collection
+                                                        <div class="product-name"><a v-text="shop.name" href="#">
                                                         </a></div>
-                                                        <a href="#" class="remove"><i class="fa fa-times"
+                                                        <a href="javascript:void(0);" onclick="del_cart_shops(this)" class="remove"> <span v-bind:sid="shop.sid" hidden="hidden"></span> <i class="fa fa-times"
                                                                                       aria-hidden="true"></i></a>
                                                         <span class="price price-dark">
 
-                                                                <ins>$229.00</ins>
+                                                                <ins><span v-text="shop.price"> 0 </span></ins><span>元</span>
 
                                                             </span>
                                                     </div>
                                                 </li>
-                                                <li class="product-inner">
-                                                    <div class="product-thumb style1">
-                                                        <div class="thumb-inner">
-                                                            <a href="#"><img src=""
-                                                                             alt="c2"></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-innfo">
-                                                        <div class="product-name"><a href="#">Acer's Aspire S7 is a thin
-                                                            and portable...</a></div>
-                                                        <a href="#" class="remove"><i class="fa fa-times"
-                                                                                      aria-hidden="true"></i></a>
-                                                        <span class="price">
 
-                                                                <ins>$229.00</ins>
-
-                                                                <del>$259.00</del>
-
-                                                            </span>
-                                                    </div>
-                                                </li>
                                             </ol>
                                         </div>
                                         <div class="subtotal">
                                             <span class="label">总计 :</span>
-                                            <span class="price">480.00元</span>
+                                            <span class="price cart_tatal_price">0 </span><span>元</span>
                                         </div>
                                         <div class="actions">
-                                            <a class="btn btn-viewcart" href="#">查看购物车</a>
+                                            <a class="btn btn-viewcart" href="/shop/shop_cart/">查看购物车</a>
                                             <a class="btn btn-checkout" href="#">结算</a>
                                         </div>
                                     </div>
@@ -227,12 +206,9 @@
                                                                 <ul class="menu">
                                                                     <li class="menu-item"><a href="#" > 坐垫
                                                                     </a></li>
-<<<<<<< HEAD
-=======
                                                                     <li class="menu-item"><a href="#"> LED灯</a></li>
                                                                     <li class="menu-item"><a href="#"> 行车记录仪</a></li>
                                                                     <li class="menu-item"><a href="#"> 车载手机支架</a>
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
                                                                     </li>
 
                                                                 </ul>
@@ -245,10 +221,8 @@
                                         </div>
                                     </li>
                                     <li class="menu-item-has-children arrow item-megamenu">
-<<<<<<< HEAD
-=======
+
                                         <a href="#" class="dropdown-toggle">汽车美容</a>
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
                                         <span class="toggle-submenu hidden-md"></span>
                                         <div class="submenu parent-megamenu megamenu">
                                             <div class="row">
@@ -258,13 +232,9 @@
                                                             <h5 class="dropdown-menu-title">美容</h5>
                                                             <div class="dropdown-menu-content">
                                                                 <ul class="menu">
-<<<<<<< HEAD
-                                                                    </a></li>
-=======
                                                                     <li class="menu-item"><a href="#">玻璃水
                                                                     </a></li>
                                                                     <li class="menu-item"></li>
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -404,6 +374,64 @@
 <script type="text/javascript" src="/static/shop/assets/js/Modernizr.js"></script>
 <script type="text/javascript" src="/static/shop/assets/js/jquery.plugin.js"></script>
 <script type="text/javascript" src="/static/shop/assets/js/jquery.countdown.js"></script>
+
+<script>
+    refresh() ;
+    function del_cart_shops(self) {
+        var sid = $($(self).children()[0]).attr('sid')
+        $.ajax(
+            {
+                url:'/shop/del_cart_shops/',
+                type:'GET',
+                data:{
+                    'sid':sid
+                },
+                success:function (data) {
+                    if(data.status == '605'){
+                        alert(data.msg)
+                        refresh();
+                    }else {
+                        alert(data.msg)
+                    }
+
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
+}
+v1 = new Vue({
+        el: '#jq_add_cart',
+        data: {
+            shops: []
+        }
+    });
+function refresh() {
+        $.ajax(
+            {
+                url:'/shop/search_cart_shops/',
+                type:'GET',
+                data:'',
+                success:function (data) {
+                    if(data){
+                        $('.shops_nums').text(data.data.length);
+                        $('.cart_tatal_price').text(data.total_price);
+                        v1.shops = data.data
+                     }
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
+
+
+　　
+
+    }
+
+</script>
 {% block js %}
 {% endblock %}
 </body>
