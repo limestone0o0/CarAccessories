@@ -1,6 +1,4 @@
-
 from .models import *
-from django.shortcuts import render
 from .testspider import ValidCodeImg
 from django.http import JsonResponse
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
@@ -12,7 +10,16 @@ import datetime
 import time
 
 # Create your views here.
-
+def loginValid(fun):
+    def inner(request,*args,**kwargs):
+        cookie_user_id = request.COOKIES.get('user_id')
+        session_user_id = request.session.get('user_id')
+        print(session_user_id,cookie_user_id)
+        if cookie_user_id and session_user_id and int(cookie_user_id) == int(session_user_id):
+            return fun(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect('/shop/shop_login/')
+    return inner
 def setPassword(password):
     md5 = hashlib.md5()
     md5.update(password.encode())
@@ -88,6 +95,7 @@ def shop_register(request):
             error_message = '邮箱不可以为空'
     return render(request,'shop/shop_register.html',locals())
 
+# @loginValid
 def shop_login(request):
 
     error_message = ''
@@ -109,10 +117,10 @@ def shop_login(request):
                 else:
                     error_message = '密码错误'
             else:
-                error_message = '用户名不存在'
+                response = HttpResponseRedirect('/shop/shop_register/')
+                return response
         else:
             error_message = '邮箱不可以为空'
-
     return render(request,'shop/shop_login.html',locals())
 
 
@@ -268,10 +276,11 @@ def shop_cart(request):
                 if cart_list:
                     for cart in cart_list:
                         try:
-                            Cart.objects.filter(id=cart.cart_id).delete()
+                            Cart.objects.filter(id=cart.cart_id).first().delete()
                             cart.delete()
                         except:
                             pass
+                return HttpResponseRedirect('/shop/shop_cart/')
 
     return render(request, 'shop/shop_cart.html', locals())
 
@@ -288,3 +297,40 @@ def clear_cart(request):
                 pass
 
     return render(request, 'shop/shop_cart.html')
+
+
+@loginValid
+def shop_userinfo(request):
+    message = ''
+    if request.method == 'POST':
+        user_id = int(request.COOKIES.get('user_id'))
+        username = request.POST.get('username')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        description = request.POST.get('description')
+        if username and phone and address:
+            #首先检测用户名/电话、地址有没有
+            userinfo = Userinfo.objects.get(id=user_id)
+            userinfo.username = username
+            userinfo.phone = phone
+            userinfo.address = address
+            userinfo.description = description
+            try:
+                userinfo.save()
+            except Exception as e:
+                print(e)
+            else:
+                message = '修改成功'
+        else:
+            message = '请补充完整信息'
+    if request.method == 'GET':
+        user_id = request.COOKIES.get('user_id')
+        u = Userinfo.objects.get(id=int(user_id))
+        username = u.username
+        phone = u.phone
+        address = u.address
+        email = u.email
+        description = u.description
+
+    return render(request,'shop/shop_userinfo.html',locals())

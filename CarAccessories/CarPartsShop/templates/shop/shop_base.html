@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
 
     <title>{% block title %}
         汽配之家
@@ -74,8 +75,6 @@
                                     <select data-placeholder="All Categories"
                                             class="chosen-select categori-search-option">
                                         <option value="">所有类别</option>
-                                        </optgroup>
-
                                         <optgroup label="- 汽车配件">
                                             <option>坐垫</option>
                                             <option>LED灯</option>
@@ -84,8 +83,6 @@
                                         </optgroup>
                                         <optgroup label="- 汽车美容">
                                             <option>玻璃水</option>
-
-
                                         </optgroup>
                                     </select>
                                 </div>
@@ -391,6 +388,9 @@
                     if(data.status == '605'){
                         alert(data.msg)
                         refresh();
+                        if($(self).attr('sid') == 'carthtml'){
+                            window.location.href = '/shop/shop_cart/'
+                        }
                     }else {
                         alert(data.msg)
                     }

@@ -57,7 +57,7 @@
                                         <span class="price">{{ shop.price }} <span>元</span> </span>
                                     </td>
                                     <td class="tb-remove">
-                                        <a href="" class="action-remove"><span><i class="fa fa-times"
+                                        <a href="avascript:void(0);" class="action-remove" sid="carthtml" onclick="del_cart_shops(this)"><span sid="{{ shop.sid }}" hidden="hidden"></span><span><i class="fa fa-times"
                                                                                   aria-hidden="true"></i></span></a>
                                     </td>
                                 </tr>
@@ -307,8 +307,5 @@
             </div>
         </div>
     </main><!-- end MAIN -->
-
-{% endblock %}
-{% block js %}
 
 {% endblock %}

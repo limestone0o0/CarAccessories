@@ -11,7 +11,6 @@ urlpatterns = [
     path('shop_cart/', shop_cart),
     path('clear_cart/', clear_cart),
     path('sci/',save_code_img),
-    #-----
-    re_path('shop_list/p/(?P<page>\d+)/', list_shop)
-    #-----
+    re_path('shop_list/p/(?P<page>\d+)/', list_shop),
+    path('shop_userinfo/',shop_userinfo)
 ]
