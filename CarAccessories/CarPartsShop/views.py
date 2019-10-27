@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
+
 from django.shortcuts import render
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
 from .models import *
 from django.shortcuts import render
 from .testspider import ValidCodeImg
@@ -9,16 +7,22 @@ from django.http import JsonResponse
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 
 
-<<<<<<< HEAD
 import time
 import hashlib
-=======
 import random
 import hashlib
 
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
 # Create your views here.
-
+def loginValid(fun):
+    def inner(request,*args,**kwargs):
+        cookie_user_id = request.COOKIES.get('user_id')
+        session_user_id = request.session.get('user_id')
+        print(session_user_id,cookie_user_id)
+        if cookie_user_id and session_user_id and int(cookie_user_id) == int(session_user_id):
+            return fun(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect('/shop/shop_login/')
+    return inner
 def setPassword(password):
     md5 = hashlib.md5()
     md5.update(password.encode())
@@ -53,13 +57,18 @@ def shop_register(request):
         password = request.POST.get('password')
         re_password = request.POST.get('repassword')
         if email:
-            user = CarpartsshopRegisteruser.objects.filter(email=email).first()
+            user = UserRegister.objects.filter(email=email).first()
             if not user :
                 if password == re_password:
-                    new_user = CarpartsshopRegisteruser()
+                    response = HttpResponseRedirect('/shop/shop_login/')
+                    new_user = UserRegister()
                     new_user.email = email
                     new_user.password = setPassword(password)
                     new_user.save()
+                    new_user_info = Userinfo()
+                    new_user_info.email = email
+                    new_user_info.save()
+                    return response
                 else:
                     error_message = '两次密码不一致'
             else:
@@ -68,30 +77,31 @@ def shop_register(request):
             error_message = '邮箱不可以为空'
     return render(request,'shop/shop_register.html',locals())
 
+# @loginValid
 def shop_login(request):
-<<<<<<< HEAD
     error_message = ''
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         if email:
             #首先检测email有没有
-            user = RegisterUser.objects.filter(email=email)
+            user = UserRegister.objects.filter(email=email).first()
             if user:#如果正确
+                user_info = Userinfo.objects.filter(email=user.email).first()
                 db_password = user.password#存入数据库的密码
                 password = setPassword(password)#从前端传过来的密码
                 if db_password == password:#判断与数据库中加密后的密码是否一致
-                    response = HttpResponseRedirect('shop/index/')
-                    response.set_cookie('username',user.email)
-                    response.session['username'] = user.email
+                    response = HttpResponseRedirect('/')
+                    response.set_cookie('user_id',user_info.id)
+                    request.session['user_id'] = user_info.id
                     return response
                 else:
                     error_message = '密码错误'
             else:
-                error_message = '用户名不存在'
+                response = HttpResponseRedirect('/shop/shop_register/')
+                return response
         else:
             error_message = '邮箱不可以为空'
-
     return render(request,'shop/shop_login.html',locals())
 def save_code_img(request):
     img_code = '404'
@@ -100,9 +110,40 @@ def save_code_img(request):
         img_code = code_img.create_img()
         # code = code_img.get_random_string()
     return JsonResponse({'code': img_code})
-=======
-    return render(request,'shop/shop_login.html')
 
+@loginValid
+def shop_userinfo(request):
+    message = ''
+    if request.method == 'POST':
+        user_id = int(request.COOKIES.get('user_id'))
+        username = request.POST.get('username')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        description = request.POST.get('description')
+        if username and phone and address:
+            #首先检测用户名/电话、地址有没有
+            userinfo = Userinfo.objects.get(id=user_id)
+            userinfo.username = username
+            userinfo.phone = phone
+            userinfo.address = address
+            userinfo.description = description
+            try:
+                userinfo.save()
+            except Exception as e:
+                print(e)
+            else:
+                message = '修改成功'
+        else:
+            message = '请补充完整信息'
+    if request.method == 'GET':
+        user_id = request.COOKIES.get('user_id')
+        u = Userinfo.objects.get(id=int(user_id))
+        username = u.username
+        phone = u.phone
+        address = u.address
+        email = u.email
+        description = u.description
 
+    return render(request,'shop/shop_userinfo.html',locals())
 
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042

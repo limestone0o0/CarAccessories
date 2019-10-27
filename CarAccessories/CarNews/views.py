@@ -1,6 +1,4 @@
 from django.shortcuts import render, HttpResponse
-<<<<<<< HEAD
-=======
 from .models import *
 from .serializers import NewsSerializer
 from rest_framework.response import Response
@@ -49,6 +47,5 @@ def news_list(request):
 def news_single(request):
 
     return render(request, 'news/blog_single.html')
->>>>>>> 02ffd3a128fff234024d36d28f35225353aa5042
 
 

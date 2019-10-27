@@ -19,7 +19,7 @@
                             {% csrf_token %}
                             <p class="form-row form-row-wide">
                                 <label>邮箱或者手机号<span class="required"></span></label>
-                                <input type="text" value="" name="username"
+                                <input type="text" value="" name="email"
                                        placeholder="请输入邮箱或者手机号" class="input-text" id="email">
                             </p>
                             <p class="form-row form-row-wide">
@@ -45,6 +45,7 @@
                             <p class="form-row">
                                 <input type="submit" value="登录" name="register" class="button-submit loginbutton" >
                             </p>
+                            <p style="color: red">{{ error_message }}</p>
                         </form>
                     </div>
                 </div>
