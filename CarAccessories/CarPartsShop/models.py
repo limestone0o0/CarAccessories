@@ -61,6 +61,7 @@ class Userinfo(models.Model):
 
 
 class Cart(models.Model):
+    shops_id = models.IntegerField(null=False)
     name = models.CharField(max_length=128, null=True)
     img = models.CharField(max_length=512, null=True)
     price = models.CharField(max_length=32, null=True)
@@ -72,3 +73,12 @@ class RelationsCartUserInfo(models.Model):
     userinfo_id = models.IntegerField()
     cart_id = models.IntegerField()
 
+
+class ShopsOrder(models.Model):
+    od_id = models.IntegerField()
+    od_shops_names = models.CharField(max_length=2048)
+    od_status = models.IntegerField()
+    user_name = models.CharField(max_length=256, null=True)
+    od_shops_nums = models.IntegerField(null=False)
+    od_time = models.DateTimeField(null=False)
+    od_shops_total_price = models.IntegerField(null=False)

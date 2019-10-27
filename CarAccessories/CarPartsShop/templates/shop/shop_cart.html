@@ -15,7 +15,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <form class="form-cart">
+                    <form class="form-cart" method="post">
+                        {% csrf_token %}
                         <div class="table-cart">
                             <table class="table">
                                 <thead>
@@ -45,7 +46,7 @@
                                     <td class="tb-qty">
                                         <div class="quantity">
                                             <div class="buttons-added">
-                                                <input type="text" value="1" title="Qty" class="input-text qty text"
+                                                <input type="text" name="shopsnums" value="{{ shop.shops_num }}" title="Qty" class="input-text qty text"
                                                        id="cal_shops" size="1">
                                                 <a href="javascript:void(0);" class="sign plus" id="upnum" onclick="changetotal()"><i class="fa fa-plus"></i></a>
                                                 <a href="javascript:void(0);" class="sign minus" id="downnum" onclick="changetotal()"><i class="fa fa-minus"></i></a>
@@ -309,12 +310,5 @@
 
 {% endblock %}
 {% block js %}
-<script>
-    function changetotal() {
-        var nums = $('#cal_shops').attr('value')
-        console.log(nums)
-    }
-
-</script>
 
 {% endblock %}

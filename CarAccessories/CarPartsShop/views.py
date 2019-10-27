@@ -8,6 +8,8 @@ from django.core.paginator import Paginator
 
 import random
 import hashlib
+import datetime
+import time
 
 # Create your views here.
 
@@ -159,27 +161,37 @@ def add_cart_wish(request):
             shop_id = request.POST.get('shopid')
             shops_num = request.POST.get('shopnums')
             user = Userinfo.objects.get(id=int(user_id))
-            shop = CarpartsshopCarparts.objects.get(id=int(shop_id))
-            cart = Cart()
-            cart.name = shop.name
-            shop_price = int(shop.price[1:-3])
-            cart.price = shop_price
-            cart.img = shop.img
-            cart.shops_num = int(shops_num)
-            cart.shops_total_price = shop_price * int(shops_num)
-            try:
-                cart.save()
-                user.save()
-            except:
-                message['status'] = '603'
-                message['msg'] = '保存失败,请重新提交'
-            else:
-                relation = RelationsCartUserInfo()
-                relation.userinfo_id = user.id
-                relation.cart_id = cart.id
-                relation.save()
+            cart_shop = Cart.objects.filter(shops_id=int(shop_id)).first()
+            if cart_shop:
+                cart_shop.shops_num += int(shops_num)
+                cart_shop.shops_total_price = int(cart_shop.price) * cart_shop.shops_num
+                cart_shop.save()
                 message['status'] = '600'
                 message['msg'] = '保存成功！'
+            else:
+                shop = CarpartsshopCarparts.objects.get(id=int(shop_id))
+                cart = Cart()
+                cart.shops_id = shop.id
+                cart.name = shop.name
+                shop_price = int(shop.price[1:-3])
+                cart.price = shop_price
+                cart.img = shop.img
+                cart.shops_num = int(shops_num)
+                cart.shops_total_price = shop_price * int(shops_num)
+                try:
+                    cart.save()
+                    user.save()
+                except Exception as e:
+                    print(e)
+                    message['status'] = '603'
+                    message['msg'] = '保存失败,请重新提交'
+                else:
+                    relation = RelationsCartUserInfo()
+                    relation.userinfo_id = user.id
+                    relation.cart_id = cart.id
+                    relation.save()
+                    message['status'] = '600'
+                    message['msg'] = '保存成功！'
         else:
             message['status'] = '602'
             message['msg'] = '用户不存在'
@@ -210,23 +222,56 @@ def del_cart_shops(request):
 
 
 def shop_cart(request):
+
     user_id = request.COOKIES.get('user_id')
+    cart_shops_name = ''
+    cart_shops_nums = 0
     data_list = []
     total_price = 0
-    rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
-    if len(rel) > 0:
-        for rel_ in rel:
-            shop = Cart.objects.get(id=rel_.cart_id)
-            if shop:
-                data = {}
-                data['name'] = shop.name
-                data['sid'] = shop.id
-                data['img'] = shop.img
-                data['price'] = shop.price
-                data['shops_num'] = shop.shops_num
-                data['shops_total_price'] = shop.shops_total_price
-                total_price += data['shops_total_price']
-                data_list.append(data)
+    try:
+        rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
+    except:
+        pass
+    else:
+        if len(rel) > 0:
+            for rel_ in rel:
+                shop = Cart.objects.get(id=rel_.cart_id)
+                if shop:
+                    data = {}
+                    data['name'] = shop.name
+                    cart_shops_name += shop.name
+                    data['sid'] = shop.id
+                    data['img'] = shop.img
+                    data['price'] = shop.price
+                    data['shops_num'] = shop.shops_num
+                    data['shops_total_price'] = shop.shops_total_price
+                    total_price += data['shops_total_price']
+                    data_list.append(data)
+        if request.method == 'POST':
+            # shopsnums = request.POST.get('shopsnums')
+            cart_shops_nums = len(data_list)
+            order = ShopsOrder()
+            order.od_id = int(time.time())
+            order.od_shops_names = cart_shops_name
+            order.od_status = 0
+            order.user_name = Userinfo.objects.get(id=int(user_id)).email
+            order.od_shops_total_price = total_price
+            order.od_time = datetime.datetime.now()
+            order.od_shops_nums = cart_shops_nums
+            try:
+                order.save()
+            except Exception as e:
+                print('error-------------')
+                print(e)
+            else:
+                cart_list = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
+                if cart_list:
+                    for cart in cart_list:
+                        try:
+                            Cart.objects.filter(id=cart.cart_id).delete()
+                            cart.delete()
+                        except:
+                            pass
 
     return render(request, 'shop/shop_cart.html', locals())
 
