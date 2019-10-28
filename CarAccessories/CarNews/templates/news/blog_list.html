@@ -110,7 +110,7 @@
                 var sitetemp = [];
                 $.ajax(
                     {
-                        url: 'http://10.10.14.182/news/newsapi/',
+                        url: '/news/newsapi/',
                         type: 'GET',
                         data: {
                             'format': 'json',
@@ -119,6 +119,7 @@
                         dataType: "json",
                         timeout: '2000',
                         async:false,
+                        cache:false,
                         success:function (res) {
                             sitetemp =  res['newsdata'];
                         },
@@ -135,7 +136,8 @@
 
     function godeail(thiss) {
         {#window.location.href='/news/news_single?id='+thiss.id#}
-        window.open("/news/news_single?id="+thiss.id)
+        var a = window.open()
+        a.location= "/news/news_single?id="+thiss.id
     }
 
     function pagechange(self) {

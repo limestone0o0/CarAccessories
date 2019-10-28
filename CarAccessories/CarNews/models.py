@@ -20,3 +20,4 @@ class CarnewsCarnews(models.Model):
 
 
 
+

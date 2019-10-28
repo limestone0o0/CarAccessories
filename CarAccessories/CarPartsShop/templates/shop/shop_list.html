@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="products products-list products-grid equal-container auto-clear">
-                            {% for shop in shops_list %}
+                            {% for shop in query_set %}
                             <div class="product-item style1 width-33 col-md-4 col-sm-6 col-xs-6 equal-elem">
                                 <div class="product-inner">
                                     <div class="product-thumb">
@@ -70,8 +70,8 @@
 
                                             </span>
                                         <div class="single-add-to-cart">
-                                            <a href="#" class="btn-add-to-cart col-lg-8">+购物车</a>
-                                            <a href="#" class="wishlist"><i class="fa fa-heart-o col-lg-4"
+                                            <a href="javascript:void(0);" id="addcart" class="btn-add-to-cart col-lg-8" onclick="addcart({{ shop.id }})">+购物车</a>
+                                            <a href="javascript:void(0);" id="addwish" class="wishlist"><i class="fa fa-heart-o col-lg-4"
                                                                             aria-hidden="true"></i>收藏</a>
                                         </div>
                                     </div>
@@ -81,10 +81,18 @@
                         </div>
                         <div class="pagination">
                             <ul class="nav-links">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li class="back-next"><a href="#">Next</a></li>
+                               <li class="active"><a href="#">当前 第 {{ page }} 页</a></li>
+                               <li ><a href="/shop/shop_list/p/1/">首页</a></li>
+
+                                {% if page_obj.has_previous %}
+                                <li class="back-next"><a href="/shop/shop_list/p/{{ page_obj.previous_page_number }}/">上一页</a></li>
+                                {% endif %}
+                                {% for p in page_list %}
+                                <li><a href="/shop/shop_list/p/{{ p }}/">{{ p }}</a></li>
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                <li class="back-next"><a href="/shop/shop_list/p/{{ page_obj.next_page_number }}/">下一页</a></li>
+                                {% endif %}
                             </ul>
 
                         </div>
@@ -423,4 +431,47 @@
     </main><!-- end MAIN -->
 
 
+{% endblock %}
+{% block js %}
+     <script src ="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"> </script>
+    <script>
+    $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+    function addcart(shopid){
+        var data = {'shopid':shopid,'shopnums':1};
+        $.ajax(
+            {
+                url: '/shop/add_cart_wish/',
+                type: 'POST',
+                data: data,
+
+                success:function (res) {
+                    if(res.status=='600'){
+                        alert(res['msg'])
+                        console.log(res)
+                        refresh();
+                    }
+                    else if(res.status=='603'){
+                        alert(res['msg'])
+                    }
+                    else if(res.status=='602'){
+                        window.location.href='/shop/shop_login/'
+                    }
+                    else {
+                        alert('操作有误');
+                        window.location.reload();
+                    }
+
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
+    }
+
+
+
+    </script>
 {% endblock %}

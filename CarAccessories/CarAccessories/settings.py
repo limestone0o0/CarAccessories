@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'CarNews',
     'CarPartsShop',
     'rest_framework',
+
 ]
 
 REST_FRAMEWORK = {

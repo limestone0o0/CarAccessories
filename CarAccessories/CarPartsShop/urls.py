@@ -5,5 +5,12 @@ urlpatterns = [
     re_path('^$', index_shop),
     path('shop_register/',shop_register),
     path('shop_login/',shop_login),
-    path('shop_list/', list_shop)
+    path('add_cart_wish/', add_cart_wish),
+    path('search_cart_shops/', search_cart_shops),
+    path('del_cart_shops/', del_cart_shops),
+    path('shop_cart/', shop_cart),
+    path('clear_cart/', clear_cart),
+    path('sci/',save_code_img),
+    re_path('shop_list/p/(?P<page>\d+)/', list_shop),
+    path('shop_userinfo/',shop_userinfo)
 ]

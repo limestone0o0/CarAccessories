@@ -1,0 +1,55 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title %}
+        个人中心
+{% endblock %}
+{% block content %}
+    <main class="site-main checkout">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <h2 class="title-checkout">个人中心 <span style="color: red;float: right">{{ message }}</span> </h2>
+            </ol>
+        </div>
+        <div class="container">
+            <form  class="checkout" method="post" name="checkout">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <img src="http://i0.hdslb.com/bfs/article/982f1dc23b295808ee39852bab0d2bc5347fae13.jpg" alt="" width="600" height="350">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="title">昵称</label>
+                        <input type="text" value="{{ username }}" class="form-control" id="forLName" placeholder="昵称" name="username">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="title">邮箱</label>
+                        <input type="email" value="{{ email }}" class="form-control" id="forEmail" placeholder="邮箱" name="email" disabled="disabled">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="title">手机</label>
+                        <input type="text" value="{{ phone }}" class="form-control" placeholder="手机" name="phone">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="title">地址</label>
+                        <input type="text" value="address" class="form-control" placeholder="设置你的收货地址" name="address">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="title">个人描述</label>
+                        <p class="form-row" style="float: right ;white-space:nowrap;">
+                                <input type="submit" value=" 保存 " name="register" class="button-submit loginbutton" >
+                        </p>
+                    </div>
+
+                    <textarea name="description"  cols="300" rows="20" style=" resize:none;" placeholder="个人描述">{{ description }}</textarea>
+                </div>
+            </form>
+        </div>
+    </main><!-- end MAIN -->
+{% endblock %}
+{% block js %}
+    <script>
+        function f() {
+
+            )
+        }
+    </script>
+{% endblock %}

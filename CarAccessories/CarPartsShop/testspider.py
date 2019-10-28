@@ -3,6 +3,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 import random
+import os
 
 
 class ValidCodeImg:
@@ -52,8 +53,9 @@ class ValidCodeImg:
         draw = ImageDraw.Draw(image)
 
         # 获取一个font字体对象参数是ttf的字体文件的目录，以及字体的大小
-        font = ImageFont.truetype("kumo.ttf", size=self.font_size)
-
+        path = os.path.dirname(__file__)
+        path_name = path+'/static/shop/assets/fonts/kumo.ttf'
+        font = ImageFont.truetype(path_name, size=self.font_size)
         temp = []
         for i in range(self.code_count):
             # 循环5次，获取5个随机字符串
@@ -93,7 +95,9 @@ class ValidCodeImg:
 
     def create_img(self):
         data, valid_str = self.get_valid_code_img()
-        f = open('test.png', 'wb')
+        path = os.path.dirname(__file__)
+        path_name = path+'/static/shop/assets/codeimgs/code_verify.png'
+        f = open(path_name, 'wb')
         f.write(data)
         f.close()
 
@@ -103,5 +107,6 @@ if __name__ == '__main__':
     img = ValidCodeImg()
     strs = img.create_img()
     print(strs)
+
 
 
