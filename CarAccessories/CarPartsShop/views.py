@@ -334,3 +334,17 @@ def shop_userinfo(request):
         description = u.description
 
     return render(request,'shop/shop_userinfo.html',locals())
+
+
+def shop_detail(request,id):
+    shop = CarpartsshopCarparts.objects.get(id=int(id))
+    interested_shop1 = CarpartsshopCarparts.objects.get(id=(int(id)+1))
+    interested_shop2 = CarpartsshopCarparts.objects.get(id=(int(id)+2))
+    interested_shop3 = CarpartsshopCarparts.objects.get(id=(int(id)+3))
+    interested_shop4 = CarpartsshopCarparts.objects.get(id=(int(id)+4))
+    shop_feature = shop.shop_feature
+    img1 = shop_feature.split('|')[0]
+    img2 = shop_feature.split('|')[1]
+    img3 = shop_feature.split('|')[2]
+    img4 = shop_feature.split('|')[3]
+    return render(request,'shop/shop_detail.html',locals())
