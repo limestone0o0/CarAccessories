@@ -1,0 +1,25 @@
+{% extends 'shop/shop_base.html' %}
+{% block title %}
+    支付结果
+{% endblock %}
+{% block content %}
+      <div class="item-slide item-slide-1">
+            <div class="container">
+                <div class="slide-desc slide-desc-1">
+                    <div class="p-primary"></div>
+{#                    <h1 align="center">支付成功</h1>#}
+                    <br><br><br>
+                    <table class="table table-bordered">
+                        <th><i>订单详情</i></th>
+                        <tr><td><em>订单时间:</em></td> <td>{{ res_list.timestamp }}</td></tr>
+                        <tr><td><em>订单流水号:</em></td> <td>{{ res_list.trade_no }}</td></tr>
+                        <tr><td><em>订单编号:</em></td> <td>{{ res_list.out_trade_no }}</td></tr>
+                        <tr><td><em>实付金额:</em></td> <td>{{ res_list.total_amount }}</td></tr>
+
+                    </table>
+
+                </div>
+            </div>
+      </div>
+    <br><br><br>
+{% endblock %}

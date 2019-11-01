@@ -13,5 +13,10 @@ urlpatterns = [
     path('sci/',save_code_img),
     re_path('shop_list/p/(?P<page>\d+)/', list_shop),
     path('verify_code/', verify_code),
-    path('get_ip/', get_ip)
+    path('shop_userinfo/',shop_userinfo),
+    re_path('shop_detail/(?P<id>\d+)/',shop_detail),
+    path('shop_order/',shop_order),
+    path('alipay/',AliPayViews),
+    path('pay_result/',pay_result),
+    path('logout/',logout),
 ]

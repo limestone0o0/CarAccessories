@@ -1,12 +1,12 @@
-from django.shortcuts import render, HttpResponse
+import datetime
+from django.shortcuts import render
 from django.http import JsonResponse
-from .models import *
-from .serializers import NewsSerializer
-from rest_framework.response import Response
+from CarNews.models import *
+from CarNews.serializers import NewsSerializer
 from rest_framework.views import APIView
 from rest_framework.pagination import PageNumberPagination
 from CarPartsShop.models import *
-import datetime
+
 
 class NewsPageNumberPagination(PageNumberPagination):
 

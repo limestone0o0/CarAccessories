@@ -39,13 +39,13 @@
                                 <div class="product-inner">
                                     <div class="product-thumb">
                                         <div class="thumb-inner">
-                                            <a href="#"><img src="{{ shop.img }}" style="height: 200px"></a>
+                                            <a href="/shop/shop_detail/{{ shop.id }}"><img src="{{ shop.img }}" style="height: 200px"></a>
                                         </div>
                                         <span class="onsale">-50%</span>
                                         <a href="#" class="quick-view">详情</a>
                                     </div>
                                     <div class="product-innfo">
-                                        <div class="product-name"><a href="#">{{ shop.name }}
+                                        <div class="product-name"><a href="/shop/shop_detail/{{ shop.id }}">{{ shop.name }}
                                         </a></div>
                                         <span class="price">
 
@@ -195,9 +195,7 @@
 {% block js %}
      <script src ="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"> </script>
     <script>
-    $.ajaxSetup({
-            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
-        });
+
     change_page();
     function change_page(self) {
         var getpath = window.location.search;
@@ -209,41 +207,6 @@
             }
         }
     }
-
-    function addcart(shopid){
-        var data = {'shopid':shopid,'shopnums':1};
-        $.ajax(
-            {
-                url: '/shop/add_cart_wish/',
-                type: 'POST',
-                data: data,
-
-                success:function (res) {
-                    if(res.status=='600'){
-                        alert(res['msg'])
-                        console.log(res)
-                        refresh();
-                    }
-                    else if(res.status=='603'){
-                        alert(res['msg'])
-                    }
-                    else if(res.status=='602'){
-                        window.location.href='/shop/shop_login/'
-                    }
-                    else {
-                        alert('操作有误');
-                        window.location.reload();
-                    }
-
-                },
-                error:function (err) {
-                    console.log(err)
-                }
-            }
-        )
-    }
-
-
 
     </script>
 {% endblock %}

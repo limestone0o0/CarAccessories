@@ -1,0 +1,385 @@
+﻿{% extends 'shop/shop_base.html' %}
+{% block title %}
+用户订单
+{% endblock %}
+
+{% block content %}
+    <!-- MAIN -->
+    <main class="site-main shopping-cart">
+        <div class="container">
+            <ol class="breadcrumb-page">
+                <li><a href="/">首页 </a></li>
+                <li class="active">订单</li>
+            </ol>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <form class="form-cart" method="post">
+                        {% csrf_token %}
+                        <div class="table-cart">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="tb-product">订单编号</th>
+                                    <th class="tb-product">商品名称</th>
+                                    <th class="tb-price">商品数量</th>
+                                    <th class="tb-qty">下单时间</th>
+                                    <th class="tb-total">订单总价</th>
+                                    <th class="tb-remove"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <form action="/shop/AliPayViews/">
+                                    {% for order in temp%}
+
+                                    <tr>
+                                        <td class="tb-price" >
+                                            <span class="od_id"><li><input type="checkbox" class="goods_check" name="{{ order.od_id }}"></li>{{ order.od_id }}</span>
+                                        </td>
+                                        <td class="tb-product">
+                                            <div class="product-name"><span>{{ order.od_shops_names }}</span></div>
+                                        </td>
+                                        <td class="tb-price" >
+                                            <span class="price">{{ order.od_shops_nums }}</span>
+                                        </td>
+                                        <td class="tb-total">
+                                            <span class="price">{{ order.od_time }} </span>
+                                        </td>
+                                        <td class="tb-total">
+                                            <span class="price">{{ order.od_shops_total_price }} <span>元</span> </span>
+                                        </td>
+                                        <td class="tb-remove">
+                                            <a href="javascript:void(0);" class="action-remove" sid="carthtml" onclick="del_cart_shops(this)"><span sid="{{ shop.sid }}" hidden="hidden"></span><span><i class="fa fa-times"
+                                                                                      aria-hidden="true"></i></span></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </form>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cart-actions">
+                            <li><input type="checkbox" id="allbox" class="">全选</li>
+{#                            <button type="button" class="btn-continue">#}
+{#                                <span>总计:{{ order_total_price }}</span>#}
+{#                            </button>#}
+{#                            <button type="submit" class="btn-update">#}
+{#                                <a style="color: white" href="/shop/alipay/?alipay_id={{ alipay_id }}&order_total_price={{ order_total_price }}" onclick="pay_order()">支付订单</a>#}
+{#                            </button>#}
+                             <button type="submit" class="btn-update">
+                                <a href="javascript:void (0)" style="color: white" onclick="pay_order()">支付订单</a>
+                            </button>
+                        </div>
+                    </div>
+                <div>
+            </div>
+        </div>
+        <div class="block-recent-view">
+            <div class="container">
+                <div class="title-of-section">你可能对这些感兴趣</div>
+                <div class="owl-carousel nav-style2 border-background equal-container" data-nav="true"
+                     data-autoplay="false" data-dots="false" data-loop="true" data-margin="0"
+                     data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4},"1200":{"items":5}}'>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="assets/images/home1/r1.jpg" alt="r1"></a>
+                                </div>
+                                <span class="onsale">-50%</span>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                <div class="product-name"><a href="#">GM Original Equipment</a></div>
+                                <span class="price">
+
+                                        <ins>$229.00</ins>
+
+                                        <del>$259.00</del>
+
+                                    </span>
+                                <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="assets/images/home1/r2.jpg" alt="r2"></a>
+                                </div>
+                                <span class="onnew">new</span>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                <div class="product-name"><a href="#">Style Steering Wheel</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="assets/images/home1/r3.jpg" alt="r3"></a>
+                                </div>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                <div class="product-name"><a href="#">Headlights with DRL</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="assets/images/home1/r4.jpg" alt="r4"></a>
+                                </div>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                <div class="product-name"><a href="#">Homasy Portable Handheld</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="assets/images/home1/r5.jpg" alt="r5"></a>
+                                </div>
+                                <span class="onsale">-50%</span>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                <div class="product-name"><a href="#">Parka With a Hood</a></div>
+                                <span class="price">
+
+                                        <ins>$229.00</ins>
+
+                                        <del>$259.00</del>
+
+                                    </span>
+                                <span class="star-rating">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+
+                                        <span class="review">5 Review(s)</span>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-item style1">
+                        <div class="product-inner equal-elem">
+                            <div class="product-thumb">
+                                <div class="thumb-inner">
+                                    <a href="#"><img src="assets/images/home1/r6.jpg" alt="r6"></a>
+                                </div>
+                                <a href="#" class="quick-view">Quick View</a>
+                            </div>
+                            <div class="product-innfo">
+                                <div class="product-name"><a href="#">Elite-X Sport Seats</a></div>
+                                <span class="price price-dark">
+
+                                        <ins>$229.00</ins>
+
+                                    </span>
+                                <div class="group-btn-hover style2">
+                                    <a href="#" class="add-to-cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                    <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i></a>
+                                    <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main><!-- end MAIN -->
+
+{% endblock %}
+{% block js %}
+    <script>
+    {#var LIST = [];#}
+    var LIST= new Set();
+
+        $("#allbox").click(
+            function () {
+                if (this.checked){
+                    $(".goods_check").prop("checked",true);
+                     $(".goods_check").each(
+                        function () {
+                            LIST.add(this.name)
+                        });
+
+                    console.log(LIST)
+                }else{
+                    $(".goods_check").prop("checked",false);
+                    LIST.clear();
+                    console.log(LIST)
+                }
+            }
+        );
+        $(".goods_check").each(
+            function () {
+                $(this).click(
+                    function () {
+                        if(!this.checked){
+                            $("#allbox").prop("checked",false)
+                        }
+                    }
+                )
+            }
+        );
+          $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+
+
+        $(".goods_check").each(
+            function () {
+                $(this).click(
+                    function () {
+                        var od_id = this.name;
+                        if (this.checked){
+                            LIST.add(od_id);
+                            console.log(LIST)
+                        }else if (!this.checked) {
+                            LIST.delete(od_id);
+                            console.log(LIST)
+                        }
+                    }
+                )
+            }
+        );
+
+
+
+
+        function pay_order() {
+            var data = LIST;
+            var list = Array.from(data);
+            if(list.length ==0){
+                alert('请选择要支付的订单！')
+            }
+            else {
+                $.ajax(
+                {
+                    url:'/shop/shop_order/',
+                    type:'POST',
+                    data:{'jsondata':JSON.stringify(list)},
+                    dataType:'json',
+                    async: false,
+                    traditional:true,
+                    success:function (data) {
+                        console.log(data);
+
+                        window.location.href = '/shop/alipay/?alipay_id='+data.alipay_id+'&order_total_price='+data.order_total_price
+
+
+                    },
+                    error:function (err) {
+                        console.log(err)
+                    }
+                }
+            )
+            }
+
+        }
+    </script>
+{% endblock %}

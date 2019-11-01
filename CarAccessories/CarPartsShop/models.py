@@ -58,6 +58,9 @@ class UserRegister(models.Model):
 class Userinfo(models.Model):
     email = models.CharField(max_length=254)
     username = models.CharField(max_length=32)
+    phone = models.CharField(max_length=11)
+    address = models.CharField(max_length=256)
+    description = models.CharField(max_length=512)
 
 
 class Cart(models.Model):

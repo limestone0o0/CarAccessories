@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
 
     <title>{% block title %}
         汽配之家
@@ -51,8 +52,8 @@
                             <img src="/static/shop/assets/images/general/China-Flag.png" alt="flag">中国
                     </li>
 
-                    <li><a href="/shop/shop_login"><i class="fa fa-user" aria-hidden="true"></i>注册 / 登录</a></li>
-
+                    <li><a href="/shop/shop_login" id="islogin"><i class="fa fa-user" aria-hidden="true"></i>登录</a></li>
+                    <li id="longout"> </li>
                 </ul><!-- heder links -->
             </div>
         </div> <!-- header-top -->
@@ -157,7 +158,7 @@
                                         </div>
                                         <div class="actions">
                                             <a class="btn btn-viewcart" href="/shop/shop_cart/">查看购物车</a>
-                                            <a class="btn btn-checkout" href="#">结算</a>
+
                                         </div>
                                     </div>
                                 </form>
@@ -263,6 +264,15 @@
                                     <a href="/news/news_list/" class="dropdown-toggle">新闻</a>
                                     <span class="toggle-submenu hidden-md"></span>
                                 </li>
+                                <li>
+                                    <a href="/shop/shop_userinfo/" class="dropdown-toggle">个人中心</a>
+                                    <span class="toggle-submenu hidden-md"></span>
+                                </li>
+                                <li class=" arrow">
+                                    <a href="/shop/shop_order/" >订单</a>
+                                    <span class="toggle-submenu hidden-md"></span>
+
+                                </li>
 {#                                <li class="menu-item-has-children arrow">#}
 {#                                    <a href="#" class="dropdown-toggle">Sub Menu</a>#}
 {#                                    <span class="toggle-submenu hidden-md"></span>#}
@@ -281,10 +291,6 @@
 {#                                        </li>#}
 {#                                    </ul>#}
 {#                                </li>#}
-                                <li>
-                                    <a href="contact-us.html" class="dropdown-toggle">联系我们</a>
-                                    <span class="toggle-submenu hidden-md"></span>
-                                </li>
 
                             </ul>
                         </div>
@@ -373,7 +379,23 @@
 <script type="text/javascript" src="/static/shop/assets/js/jquery.countdown.js"></script>
 
 <script>
-    refresh() ;
+     $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+    refresh();
+    is_login();
+    function is_login() {
+        var c = document.cookie.split(";");
+        for(var i in c){
+            var pre_name = c[i].split('=')[0].trim();
+            var name = c[i].split('=')[1];
+            if(pre_name == "user_name"){
+                $('#islogin').text('欢迎 ' + name + ' 登录！');
+                $('#longout').append('<li><a href="/shop/logout/">退出登录</a></li>');
+                return
+            }
+        }
+    }
     function del_cart_shops(self) {
         var sid = $($(self).children()[0]).attr('sid')
         $.ajax(
@@ -387,6 +409,9 @@
                     if(data.status == '605'){
                         alert(data.msg)
                         refresh();
+                        if($(self).attr('sid') == 'carthtml'){
+                            window.location.href = '/shop/shop_cart/'
+                        }
                     }else {
                         alert(data.msg)
                     }
@@ -422,10 +447,38 @@ function refresh() {
                 }
             }
         )
+    }
+    function addcart(shopid){
+        var data = {'shopid':shopid,'shopnums':1};
+        $.ajax(
+            {
+                url: '/shop/add_cart_wish/',
+                type: 'POST',
+                data: data,
 
+                success:function (res) {
+                    if(res.status=='600'){
+                        alert(res['msg'])
+                        console.log(res)
+                        refresh();
+                    }
+                    else if(res.status=='603'){
+                        alert(res['msg'])
+                    }
+                    else if(res.status=='602'){
+                        window.location.href='/shop/shop_login/'
+                    }
+                    else {
+                        alert('操作有误');
+                        window.location.reload();
+                    }
 
-　　
-
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            }
+        )
     }
 
 </script>

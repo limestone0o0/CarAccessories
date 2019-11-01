@@ -1,18 +1,32 @@
-from .models import *
-from .testspider import ValidCodeImg
-from django.http import JsonResponse
-from django.shortcuts import render,HttpResponseRedirect,HttpResponse
-from django.core.paginator import Paginator
-import smtplib
-
-from email.mime.text import MIMEText
-from email.header import Header
+import time
+import json
 import random
 import hashlib
+import smtplib
 import datetime
-import time
+from email.header import Header
+from email.mime.text import MIMEText
 
-# Create your views here.
+from alipay import AliPay
+from django.http import JsonResponse
+from django.core.paginator import Paginator
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse
+
+from CarPartsShop.models import *
+from CarPartsShop.testspider import ValidCodeImg
+from CarAccessories.settings import alipay_public_key_string,alipay_private_key_string
+
+
+def loginValid(fun):
+    def inner(request,*args,**kwargs):
+        cookie_user_id = request.COOKIES.get('user_id')
+        session_user_id = request.session.get('user_id')
+        if cookie_user_id and session_user_id and int(cookie_user_id) == int(session_user_id):
+            return fun(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect('/shop/shop_login/')
+    return inner
+
 
 def setPassword(password):
     md5 = hashlib.md5()
@@ -79,7 +93,7 @@ def shop_register(request):
         if email:
             user = UserRegister.objects.filter(email=email).first()
             if not user :
-                if password == re_password:
+                if password and re_password and password == re_password:
                     new_user = UserRegister()
                     new_user.email = email
                     new_user.password = setPassword(password)
@@ -91,21 +105,10 @@ def shop_register(request):
                 else:
                     error_message = '两次密码不一致'
             else:
-                error_message = '邮箱可以被注册'
+                error_message = '邮箱已经被注册'
         else:
-            error_message = '邮箱不可以为空'
+            error_message = '邮箱不能为空'
     return render(request,'shop/shop_register.html',locals())
-
-
-def get_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]#所以这里是真实的ip
-        print(ip)
-    else:
-        ip = request.META.get('REMOTE_ADDR')#这里获得代理ip
-        print('daili',ip)
-    return HttpResponse(str(ip))
 
 
 def shop_login(request):
@@ -124,15 +127,16 @@ def shop_login(request):
                 if db_password == password:#判断与数据库中加密后的密码是否一致
                     response = HttpResponseRedirect('/')
                     response.set_cookie('user_id',user_info.id)
+                    response.set_cookie('user_name',user_info.username)
                     request.session['user_id'] = user_info.id
                     return response
                 else:
                     error_message = '密码错误'
             else:
-                error_message = '用户名不存在'
+                response = HttpResponseRedirect('/shop/shop_register/')
+                return response
         else:
             error_message = '邮箱不可以为空'
-
     return render(request,'shop/shop_login.html',locals())
 
 
@@ -173,6 +177,7 @@ def search_cart_shops(request):
     return JsonResponse(message)
 
 
+@loginValid
 def add_cart_wish(request):
     message = {'status': '404', 'msg': '请求错误'}
     # {'shopid':shopid,'shopnums':1}
@@ -220,6 +225,7 @@ def add_cart_wish(request):
     return JsonResponse(message)
 
 
+@loginValid
 def del_cart_shops(request):
     message = {'status': '404', 'msg': '请求错误'}
     if request.method == 'GET':
@@ -242,6 +248,7 @@ def del_cart_shops(request):
     return JsonResponse(message)
 
 
+@loginValid
 def shop_cart(request):
 
     user_id = request.COOKIES.get('user_id')
@@ -289,14 +296,16 @@ def shop_cart(request):
                 if cart_list:
                     for cart in cart_list:
                         try:
-                            Cart.objects.filter(id=cart.cart_id).delete()
+                            Cart.objects.filter(id=cart.cart_id).first().delete()
                             cart.delete()
                         except:
                             pass
+                return HttpResponseRedirect('/shop/shop_order/')
 
     return render(request, 'shop/shop_cart.html', locals())
 
 
+@loginValid
 def clear_cart(request):
     user_id = request.COOKIES.get('user_id')
     cart_list = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
@@ -356,3 +365,134 @@ def verify_code(request):
         message['info'] = str(code)
 
     return JsonResponse(message)
+
+
+@loginValid
+def shop_userinfo(request):
+    message = ''
+    if request.method == 'POST':
+        user_id = int(request.COOKIES.get('user_id'))
+        username = request.POST.get('username')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        email = request.POST.get('email')
+        description = request.POST.get('description')
+        if username and phone and address:
+            #首先检测用户名/电话、地址有没有
+            userinfo = Userinfo.objects.get(id=user_id)
+            userinfo.username = username
+            userinfo.phone = phone
+            userinfo.address = address
+            userinfo.description = description
+            try:
+                userinfo.save()
+            except Exception as e:
+                print(e)
+            else:
+                message = '修改成功'
+        else:
+            message = '请补充完整信息'
+    if request.method == 'GET':
+        user_id = request.COOKIES.get('user_id')
+        u = Userinfo.objects.get(id=int(user_id))
+        username = u.username
+        phone = u.phone
+        address = u.address
+        email = u.email
+        description = u.description
+
+    return render(request,'shop/shop_userinfo.html',locals())
+
+
+def shop_detail(request,id):
+    shop = CarpartsshopCarparts.objects.get(id=int(id))
+    interested_shop = CarpartsshopCarparts.objects.filter(id__range=[int(id)+1, int(id)+4])
+    shop_feature = shop.shop_feature
+    img_list = shop_feature.split('|')
+    order_price = shop.price[1:]
+    return render(request,'shop/shop_detail.html',locals())
+
+
+@loginValid
+def shop_order(request):
+    if request.method == 'GET':
+        order_list = []
+        id = request.COOKIES.get('user_id')
+        email = Userinfo.objects.get(id=int(id)).email
+        order_list = ShopsOrder.objects.filter(user_name=email)
+        temp = list(order_list)
+        for i in temp[::-1]:
+            if i.od_status == 2:
+                temp.remove(i)
+
+    message = {'status': '404', 'msg': '请求错误'}
+    if request.method == "POST":
+        data = request.POST.get("jsondata")
+        od_id_list = json.loads(data)
+        if len(od_id_list) > 1:
+            alipay_id = int(time.time())
+            order_total_price = 0
+            for od_id in od_id_list:
+                order = ShopsOrder.objects.get(od_id=od_id)
+                order_total_price += order.od_shops_total_price
+                order.od_status = 1
+                order.save()
+        else:
+            alipay_id = od_id_list[0]
+            order = ShopsOrder.objects.get(od_id=alipay_id)
+            order_total_price = order.od_shops_total_price
+            order.od_status = 1
+            order.save()
+
+        return JsonResponse({'alipay_id': alipay_id, 'order_total_price': order_total_price})
+
+    return render(request,'shop/shop_order.html',locals())
+
+
+@loginValid
+def AliPayViews(request):
+    alipay_id = request.GET.get("alipay_id")
+    order_total_price = request.GET.get("order_total_price")
+    #实例化支付
+    alipay = AliPay(
+        appid="2016101200667752",
+        app_notify_url=None,
+        app_private_key_string=alipay_private_key_string,
+        alipay_public_key_string=alipay_public_key_string,
+        sign_type="RSA2"
+    )
+    # 实例化订单
+    order_string = alipay.api_alipay_trade_page_pay(
+        out_trade_no=alipay_id,
+        total_amount=str(order_total_price),
+        subject="商品交易",
+        return_url='http://10.10.14.182/shop/pay_result/',
+        notify_url='http://10.10.14.182/shop/pay_result/'
+    )#网页支付订单
+
+    #拼接收款地址 = 支付宝网关 + 订单返回参数
+    result = "https://openapi.alipaydev.com/gateway.do?" + order_string
+    return HttpResponseRedirect(result)
+
+
+def pay_result(request):
+    id = request.COOKIES.get('user_id')
+    res_list = request.GET.dict()
+    email = Userinfo.objects.get(id=id).email
+    out_trade_no = request.GET.get("out_trade_no")
+    if out_trade_no:
+        order_list = ShopsOrder.objects.filter(user_name=email)
+        for order in order_list:
+            if order.od_status == 1:
+                order.od_status = 2
+                order.save()
+    return render(request,'shop/shop_pay_result.html',locals())
+
+
+def logout(request):
+    if request.method == 'GET':
+        response = HttpResponseRedirect('/shop/')
+        response.delete_cookie('user_id')
+        response.delete_cookie('user_name')
+        del request.session['user_id']
+        return response
