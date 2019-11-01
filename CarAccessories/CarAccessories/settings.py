@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import djcelery
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'CarNews',
     'CarPartsShop',
     'rest_framework',
+    'djcelery'
 
 ]
 
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'CarAccessories.middleware.RequestBlockingMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -152,5 +155,8 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static')
 
-
-
+djcelery.setup_loader()
+BOOKER_URL = 'redis://:127.0.0.1:6379/1'
+CELERY_IMPORTS = ('CarPartsShop.task')
+CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'

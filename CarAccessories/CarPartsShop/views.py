@@ -1,11 +1,12 @@
-
 from .models import *
-from django.shortcuts import render
 from .testspider import ValidCodeImg
 from django.http import JsonResponse
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from django.core.paginator import Paginator
+import smtplib
 
+from email.mime.text import MIMEText
+from email.header import Header
 import random
 import hashlib
 import datetime
@@ -22,7 +23,7 @@ def setPassword(password):
 
 def index_shop(request):
     car_type = CarpartsshopCartype.objects.all()
-    own_shops = CarpartsshopCarparts.objects.all().order_by('price')[0:8]
+    own_shops = CarpartsshopCarparts.objects.all().order_by('price')[:8]
     first_shop = CarpartsshopCarparts.objects.all().order_by('grade')
     first_shop_temp1 = first_shop[0:5]
     first_shop_temp2 = first_shop[5:7]
@@ -48,16 +49,23 @@ def set_pages(page, last_page):
         return range(page-2, page+3)
 
 
-def list_shop(request, page):
-    page = int(page)
-    #--------
-    shops_list = CarpartsshopCarparts.objects.all()
-    #--------
-    car_type = CarpartsshopCartype.objects.all()
+def deal_objects(page ,type_id):
+    if type_id:
+        shops_list = CarpartsshopCarparts.objects.filter(type=int(type_id))
+    else:
+        shops_list = CarpartsshopCarparts.objects.all()
     paginator_obj = Paginator(shops_list, 12)
     page_list = set_pages(page, paginator_obj.num_pages)
     page_obj = paginator_obj.page(page)
     query_set = page_obj.object_list
+    return query_set, page_obj, page_list
+
+
+def list_shop(request, page):
+    type_id = request.GET.get('type')
+    car_type = CarpartsshopCartype.objects.all()
+    page = int(page)
+    query_set, page_obj, page_list = deal_objects(page, type_id)
 
     return render(request, 'shop/shop_list.html', locals())
 
@@ -87,6 +95,18 @@ def shop_register(request):
         else:
             error_message = '邮箱不可以为空'
     return render(request,'shop/shop_register.html',locals())
+
+
+def get_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]#所以这里是真实的ip
+        print(ip)
+    else:
+        ip = request.META.get('REMOTE_ADDR')#这里获得代理ip
+        print('daili',ip)
+    return HttpResponse(str(ip))
+
 
 def shop_login(request):
 
@@ -128,27 +148,28 @@ def save_code_img(request):
 def search_cart_shops(request):
     user_id = request.COOKIES.get('user_id')
     message = {'status': '404', 'msg': '未找到', 'data': ''}
-    data_list = []
-    total_price = 0
-    rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
-    if len(rel) > 0:
-        for rel_ in rel:
-            shop = Cart.objects.get(id=rel_.cart_id)
-            if shop:
-                data = {}
-                data['name'] = shop.name
-                data['sid'] = shop.id
-                data['img'] = shop.img
-                data['price'] = shop.price
-                data['shops_num'] = shop.shops_num
-                data['shops_total_price'] = shop.shops_total_price
-                total_price += data['shops_total_price']
-                data_list.append(data)
-        message['status'] = '600'
-        message['msg'] = '保存成功！'
-        message['total_price'] = total_price
+    if user_id:
+        data_list = []
+        total_price = 0
+        rel = RelationsCartUserInfo.objects.filter(userinfo_id=int(user_id))
+        if len(rel) > 0:
+            for rel_ in rel:
+                shop = Cart.objects.get(id=rel_.cart_id)
+                if shop:
+                    data = {}
+                    data['name'] = shop.name
+                    data['sid'] = shop.id
+                    data['img'] = shop.img
+                    data['price'] = shop.price
+                    data['shops_num'] = shop.shops_num
+                    data['shops_total_price'] = shop.shops_total_price
+                    total_price += data['shops_total_price']
+                    data_list.append(data)
+            message['status'] = '600'
+            message['msg'] = '保存成功！'
+            message['total_price'] = total_price
 
-    message['data'] = data_list
+        message['data'] = data_list
     return JsonResponse(message)
 
 
@@ -288,3 +309,50 @@ def clear_cart(request):
                 pass
 
     return render(request, 'shop/shop_cart.html')
+
+
+def send_email(code, email):
+    sender = 'xxm13504577723@163.com'
+    password = 'xxm123456'
+    revicers = [
+        # 'liulidong@tju.edu.cn'
+        email
+
+    ]
+    content = '''尊敬的用户%s:
+
+        欢迎注册passeur.cn摆渡账户，
+
+        你的验证码是%s
+
+        如果你有任何的不满和建议可以在该网站的博客中在线和我聊天passeur.com/chat/
+        或者给我发送邮件xxm13504577723@163.com
+    ''' % (''.join(revicers), code)
+
+    message = MIMEText(content, 'plain', 'utf-8')
+    message['From'] = Header("摆渡账号中心", 'utf-8')  # 发送者
+    message['To'] = ''.join(revicers)
+
+    subject = '摆渡账号注册验证码'
+    message['Subject'] = Header(subject, 'utf-8')
+
+    smtp = smtplib.SMTP_SSL("smtp.163.com", 465)
+    smtp.login(sender, password)
+    smtp.sendmail(sender, revicers, message.as_string())
+
+    smtp.close()
+
+
+def verify_code(request):
+    message = {
+        'status': '404',
+        'info': '重新发送'
+    }
+    if request.method == 'GET':
+        email = request.GET.get('email')
+        code = ''.join([str(random.randint(0, 9)) for i in range(0, 6)])
+        send_email(code, email)
+        message['status'] = '600'
+        message['info'] = str(code)
+
+    return JsonResponse(message)

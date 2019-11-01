@@ -38,33 +38,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="post-footer">
-                                <div class="tag">
-                                    <span>标签</span>
-                                    <a href="#">示例标签</a>
-                                    <a href="#">示例标签</a>
-                                    <a href="#">示例标签</a>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="post-comments">
                             <div class="block-title">评论</div>
+                            <div>
+                                {% for com in comment_list %}
+                                <p>
+                                    <span class="col-lg-3"> {{ com.user_name }}</span>
+                                    <span class="col-lg-6">{{ com.art_comment }}</span>
+                                    <span class="col-lg-3">{{ com.art_comment_time }}</span>
+                                    <br>
+                                </p>
+                                {% endfor %}
+                            </div>
+                            <br><br>
                             <div class="block-content">
-                                <form>
-                                    <div class="form-group col-md-6 padding-left">
-                                        <label class="title">姓名*</label>
-                                        <input type="text" class="form-control" id="forName">
-                                    </div>
-                                    <div class="form-group col-md-6 padding-right">
-                                        <label class="title">邮箱*</label>
-                                        <input type="email" class="form-control" id="forEmail">
-                                    </div>
                                     <div class="form-group">
                                         <label class="title">您的评论</label>
-                                        <textarea class="form-control" id="forContent" rows="9">这是一个评论测试</textarea>
+                                        <textarea style="resize:none;"  class="form-control" id="forContent" rows="9" placeholder="请在此处输入评论内容..."></textarea>
                                     </div>
-                                    <button type="submit" class="btn-comment">提交评论</button>
-                                </form>
+                                    <button type="submit" onclick="commit_c()" class="btn-comment">提交评论</button>
                             </div>
                         </div>
                     </div>
@@ -84,24 +78,12 @@
                         <div class="block-recent-post-blog">
                             <div class="block-title">最近快讯</div>
                             <ul>
-                                <li class="recent-post-item"><a href="#">1</a></li>
-                                <li class="recent-post-item"><a href="#">2</a>
-                                </li>
-                                <li class="recent-post-item"><a href="#">3</a></li>
-                                <li class="recent-post-item"><a href="#">4</a>
-                                </li>
+                                {% for i in news_nearly %}
+                                <li class="recent-post-item"><a href="#"><span style="font-size: 10px">{{ i.news_abstract }}</span></a></li>
+                                {% endfor %}
                             </ul>
                         </div>
-                        <div class="block-categories-blog">
-                            <div class="block-title">快讯分类</div>
-                            <ul>
-                                <li class="categories-item"><a href="#">示例快讯</a></li>
-                                <li class="categories-item"><a href="#">示例快讯</a></li>
-                                <li class="categories-item"><a href="#">示例快讯</a></li>
-                                <li class="categories-item"><a href="#">示例快讯</a></li>
-                                <li class="categories-item"><a href="#">示例快讯</a></li>
-                            </ul>
-                        </div>
+
 
                     </div>
                 </div>
@@ -114,6 +96,10 @@
 
 {% block js %}
     <script>
+     $.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+    var FLAGCOMMENT = 0;
         new Vue({
         el: '#postsnewsapi',
         data: {
@@ -142,6 +128,59 @@
             })
     }
     });
+        $('#forContent').focus(function () {
+            $.ajax(
+                {
+                    url: '/news/verify_login/',
+                    type:'GET',
+                    data:'',
+                    success:function (data) {
+                        if(data.code == '404'){
+                            alert(data.msg)
+                            window.location.href = '/shop/shop_login/'
+                        }
+                        else {
+                            FLAGCOMMENT = 1;
+                        }
+                    }
+                }
+            )
+        })
+    function commit_c() {
+        var comment = $('#forContent').val();
+        var part =/id=(\d+)/;
+        var url_get = window.location.href;
+        var id = url_get.match(part)[1];
+        if(comment<10){
+            alert('评论字数不能少于10个字！')
+        }
+        else {
+
+            $.ajax(
+                {
+                    url: '/news/news_single/',
+                    type: 'POST',
+                    data: {
+                        'data': comment,
+                        'id': id
+                    },
+                    success:function (data) {
+                        if(data.code == '200'){
+                            alert(data.msg)
+                            window.location.reload()
+                        }
+                        else if(data.code == '500') {
+                            alert(data.msg)
+                        }
+                    },
+                    error: function (err) {
+                        alert('提交失败，请重新提交！')
+                    }
+                }
+            )
+        }
+    }
+
     </script>
 {% endblock %}
 

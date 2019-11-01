@@ -18,31 +18,94 @@
                         <form class="register" method="post">
                             {% csrf_token %}
                             <p class="form-row form-row-wide">
-                                <label>邮箱或者手机号<span class="required"></span></label>
-                                <input type="text" value="" name="email"
+                                <label>邮箱<span class="required"></span></label>
+                                <input type="text" value="" name="email" id="getemail"
                                        placeholder="请输入邮箱或者手机号" class="input-text">
                             </p>
                             <p class="form-row form-row-wide">
                                 <label>密码<span class="required"></span></label>
-                                <input type="text" value="" name="password"
+                                <input type="password" value="" name="password"
                                        placeholder="请输入密码" class="input-text">
                             </p>
                             <p class="form-row form-row-wide">
                                 <label>再次输入密码<span class="required"></span></label>
                                 <input type="password" name="repassword" placeholder="请再次输入密码" class="input-text">
+                                <p id="verify_text" style="color: lightgreen;"></p>
                             </p>
-                            <ul class="inline-block">
-                                <li><label class="inline"><input type="checkbox"><span class="input"></span>记住密码</label>
-                                </li>
-                            </ul>
-                            <a href="#" class="forgot-password">忘记密码?</a>
+                             <p class="form-row col-lg-6">
+                                <input type="password" id="verify" placeholder="请输入验证码" class="input-text">
+                            </p>
+                            <p class="form-row col-lg-6">
+                                <a href="javascript:void(0);" style="float: left" class="button" id="send_code" onclick="send_email()">发送邮箱验证码 </a><span id="timeout" style="color: red" class="col-lg-4 "></span>
+                            </p>
+
                             <p class="form-row">
-                                <input type="submit" value="注册" name="register" class="button-submit">
+                                <input id="registerbutton" type="submit" value="注册" name="register" class="button-submit">
                             </p>
                         </form>
+                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </main><!-- end MAIN -->
+{% endblock %}
+{% block js %}
+    <script>
+    var VERIFY_CODE = '';
+    var t1 = ''
+        function send_email() {
+        var email = $('#getemail').val();
+        var e_pattern = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+        var res = email.match(e_pattern);
+        if (!res){
+            alert('邮箱格式不对')
+        }
+        else {
+            $.ajax(
+                {
+                    url: '/shop/verify_code/?email='+ email,
+                    type: 'GET',
+                    data: '',
+                    success: function (data) {
+                        if (data.status == '600') {
+                            $('#timeout').text(60);
+                            VERIFY_CODE = data.info;
+                            console.log(VERIFY_CODE);
+                            t1 = window.setTimeout("timeadd()", 1000);
+                            $('#send_code').removeAttr('onclick');
+                        } else {
+                            alert(data.info)
+                        }
+                    }
+                }
+            )
+        }
+        }
+        $('#verify').blur(function () {
+            var code = $('#verify').val()
+            if(VERIFY_CODE == code){
+                $('#verify_text').text('验证成功')
+                $('#registerbutton').removeAttr('disabled')
+            }else {
+                $('#verify_text').text('验证失败');
+                $('#registerbutton').attr('disabled','true')
+            }
+        });
+    function timeadd() {
+        var a = parseInt($('#timeout').text());
+            a = a-1;
+
+            if(a == 0){
+                window.clearTimeout(t1);
+                $('#timeout').text('');
+                $('#send_code').attr('onclick', 'send_email()')
+            }else {
+                $('#timeout').text(a);
+                t1 = window.setTimeout("timeadd()", 1000);
+            }
+        }
+
+    </script>
+
 {% endblock %}

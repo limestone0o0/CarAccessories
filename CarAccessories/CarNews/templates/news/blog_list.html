@@ -67,24 +67,12 @@
                         <div class="block-recent-post-blog">
                             <div class="block-title">最近快讯</div>
                             <ul>
-                                <li class="recent-post-item"><a href="#">Gallery Post with Supported Animation</a></li>
-                                <li class="recent-post-item"><a href="#">Announcement – Standard Post without Image</a>
-                                </li>
-                                <li class="recent-post-item"><a href="#">We’re the best Designers from UK</a></li>
-                                <li class="recent-post-item"><a href="#">A Beautiful Day – Standard Post with Image</a>
-                                </li>
+                                {% for i in news_nearly %}
+                                <li class="recent-post-item"><a href="#"><span style="font-size: 10px">{{ i.news_abstract }}</span> </a></li>
+                                {% endfor %}
                             </ul>
                         </div>
-                        <div class="block-categories-blog">
-                            <div class="block-title">文章类型</div>
-                            <ul>
-                                <li class="categories-item"><a href="#">示例类型</a></li>
-                                <li class="categories-item"><a href="#">示例类型</a></li>
-                                <li class="categories-item"><a href="#">示例类型</a></li>
-                                <li class="categories-item"><a href="#">示例类型</a></li>
-                                <li class="categories-item"><a href="#">示例类型</a></li>
-                            </ul>
-                        </div>
+
 
                     </div>
                 </div>
@@ -122,6 +110,7 @@
                         cache:false,
                         success:function (res) {
                             sitetemp =  res['newsdata'];
+                            console.log(sitetemp)
                         },
                         error:function (err) {
                             console.log(err)

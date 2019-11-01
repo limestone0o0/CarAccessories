@@ -18,6 +18,8 @@ class CarnewsCarnews(models.Model):
         managed = False
         db_table = 'CarNews_carnews'
 
-
-
-
+class Comment(models.Model):
+    user_name = models.CharField(max_length=50, null=True)
+    art_comment = models.TextField(null=True)
+    art_id = models.ForeignKey('CarnewsCarnews', on_delete=models.CASCADE, null=True)
+    art_comment_time = models.DateTimeField()

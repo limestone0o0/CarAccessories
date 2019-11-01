@@ -43,7 +43,7 @@
                      data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3},"992":{"items":4}}'>
                     {% for i in car_type %}
                     <div class="block-top-categori-item">
-                        <a href="#"><img src="{{ i.img }}" style="width: 200px;height: 200px" alt="c1"></a>
+                        <a href="/shop/shop_list/p/1/?type={{ i.id }}"><img src="{{ i.img }}" style="width: 200px;height: 200px" alt="c1"></a>
                         <div class="block-top-categori-title">{{ i.name }}</div>
                     </div>
                     {% endfor %}
