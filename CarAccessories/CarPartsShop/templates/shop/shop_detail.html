@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="single-add-to-cart">
                                     <a href="#" class="btn-add-to-cart" onclick="addcart({{ shop.id }})">加入购物车</a>
-                                    <a href="#" class="btn-add-to-cart">立即购买</a>
+                                    <a href="/shop/alipay/?alipay_id={{ shop.id }}&order_total_price={{ order_price }}" class="btn-add-to-cart">立即购买</a>
                                     <a href="#" class="compare"><i class="flaticon-refresh-square-arrows"></i>对比</a>
                                     <a href="#" class="wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i>喜欢</a>
                                 </div>
@@ -388,26 +388,6 @@
 {% endblock %}
 {% block js %}
     <script>
-        {#function add() {#}
-        {#    value = parseInt($("#numebr").val());#}
-        {#    price = parseFloat($("#price")).text();#}
-        {#    value = value + 1;#}
-        {#    $("#number").val(value);#}
-        {#    total = value*price;#}
-        {#    $("#price").text(total)#}
-        {#};#}
-        {#function down() {#}
-        {#    value = parseInt($("#number").val());#}
-        {#    price = parseFloat($("#price")).text();#}
-        {#    if (value>1){#}
-        {#        value = value - 1;#}
-        {#        $("#number").val(value)#}
-        {#    } else{#}
-        {#        $("#number").val(1)#}
-        {#    }#}
-        {#    total = value*price;#}
-        {#    $("#total").text(total)#}
-        {#}#}
                 $.ajaxSetup({
                 data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
             });

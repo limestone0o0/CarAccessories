@@ -3,18 +3,21 @@ from .testspider import ValidCodeImg
 from django.http import JsonResponse
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from django.core.paginator import Paginator
+from alipay import AliPay
+from CarAccessories.settings import alipay_public_key_string,alipay_private_key_string
+
 
 import random
 import hashlib
 import datetime
 import time
+import json
 
 # Create your views here.
 def loginValid(fun):
     def inner(request,*args,**kwargs):
         cookie_user_id = request.COOKIES.get('user_id')
         session_user_id = request.session.get('user_id')
-        print(session_user_id,cookie_user_id)
         if cookie_user_id and session_user_id and int(cookie_user_id) == int(session_user_id):
             return fun(request, *args, **kwargs)
         else:
@@ -336,6 +339,7 @@ def shop_userinfo(request):
     return render(request,'shop/shop_userinfo.html',locals())
 
 
+@loginValid
 def shop_detail(request,id):
     shop = CarpartsshopCarparts.objects.get(id=int(id))
     interested_shop1 = CarpartsshopCarparts.objects.get(id=(int(id)+1))
@@ -347,4 +351,74 @@ def shop_detail(request,id):
     img2 = shop_feature.split('|')[1]
     img3 = shop_feature.split('|')[2]
     img4 = shop_feature.split('|')[3]
+    order_price = shop.price[1:]
     return render(request,'shop/shop_detail.html',locals())
+
+@loginValid
+def shop_order(request):
+    id = request.COOKIES.get('user_id')
+    email = Userinfo.objects.get(id=id).email
+    order_list = list(ShopsOrder.objects.filter(user_name=email))
+    for order in order_list:
+        if order.od_status == 2:
+            order_list.remove(order)
+    message = {'status': '404', 'msg': '请求错误'}
+    if request.method == "POST":
+        data = request.POST.get("jsondata")
+        od_id_list = json.loads(data)
+        if len(od_id_list) > 1:
+            alipay_id = int(time.time())
+            order_total_price = 0
+            for od_id in od_id_list:
+                order = ShopsOrder.objects.get(od_id=od_id)
+                order_total_price += order.od_shops_total_price
+                order.od_status = 1
+                order.save()
+        else:
+            alipay_id = od_id_list[0]
+            order = ShopsOrder.objects.get(od_id=alipay_id)
+            order_total_price = order.od_shops_total_price
+            order.od_status = 1
+            order.save()
+
+        return JsonResponse({'alipay_id':alipay_id, 'order_total_price':order_total_price})
+
+    return render(request,'shop/shop_order.html',locals())
+
+
+def AliPayViews(request):
+    alipay_id = request.GET.get("alipay_id")
+    order_total_price = request.GET.get("order_total_price")
+    #实例化支付
+    alipay = AliPay(
+        appid="2016101200667752",
+        app_notify_url=None,
+        app_private_key_string=alipay_private_key_string,
+        alipay_public_key_string=alipay_public_key_string,
+        sign_type="RSA2"
+    )
+    # 实例化订单
+    order_string = alipay.api_alipay_trade_page_pay(
+        out_trade_no=alipay_id,
+        total_amount=str(order_total_price),
+        subject="商品交易",
+        return_url='http://127.0.0.1:8000/shop/pay_result/',
+        notify_url='http://127.0.0.1:8000/shop/pay_result/'
+    )#网页支付订单
+
+    #拼接收款地址 = 支付宝网关 + 订单返回参数
+    result = "https://openapi.alipaydev.com/gateway.do?" + order_string
+    return HttpResponseRedirect(result)
+
+
+def pay_result(request):
+    id = request.COOKIES.get('user_id')
+    email = Userinfo.objects.get(id=id).email
+    out_trade_no = request.GET.get("out_trade_no")
+    if out_trade_no:
+        order_list = ShopsOrder.objects.filter(user_name=email)
+        for order in order_list:
+            if order.od_status == 1:
+                order.od_status = 2
+                order.save()
+    return render(request,'shop/shop_pay_result.html',locals())
